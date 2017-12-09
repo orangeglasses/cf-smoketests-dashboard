@@ -1,0 +1,29 @@
+<html>
+<head>
+    <script type="text/javascript" src="js/signalr-client-1.0.0-alpha2-final.js"></script>
+</head>
+<body>
+    <div id="main"></div>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script>
+        var node = document.getElementById('main');
+        var app = Elm.Main.embed(node);
+
+        const logger = new signalR.ConsoleLogger(signalR.LogLevel.Information);
+        const smokeHub = new signalR.HttpConnection(`http://${document.location.host}/smoke`, { logger: logger });
+        const smokeConn = new signalR.HubConnection(smokeHub, logger);
+
+        smokeConn.onClosed = e => {
+            console.log('Connection closed');
+        };
+
+        smokeConn.on('send', data => {
+            console.log(data);
+            app.ports.updates.send(data);
+        });
+
+        smokeConn.start().then(() => smokeConn.invoke('send', 'Hello'));
+
+    </script>
+</body>
+</html>
