@@ -1,5 +1,5 @@
 
-# Created by https://www.gitignore.io/api/aspnetcore,visualstudiocode
+# Created by https://www.gitignore.io/api/elm,aspnetcore,visualstudiocode
 
 ### ASPNETCore ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -271,6 +271,12 @@ __pycache__/
 # Cake - Uncomment if you are using it
 # tools/
 
+### Elm ###
+# elm-package generated files
+elm-stuff
+# elm-repl generated files
+repl-temp-*
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -279,4 +285,4 @@ __pycache__/
 !.vscode/extensions.json
 .history
 
-# End of https://www.gitignore.io/api/aspnetcore,visualstudiocode
+# End of https://www.gitignore.io/api/elm,aspnetcore,visualstudiocode
