@@ -1,6 +1,6 @@
 <html>
 <head>
-    <script type="text/javascript" src="js/signalr-client-1.0.0-alpha2-final.js"></script>
+    <script type="text/javascript" src="js/lib/signalr-client-1.0.0-alpha2-final.js"></script>
 </head>
 <body>
     <div id="main"></div>
@@ -22,7 +22,7 @@
             app.ports.updates.send(data);
         });
 
-        smokeConn.start().then(() => smokeConn.invoke('send', 'Hello'));
+        smokeConn.start().then(() => smokeConn.invoke('send', 42));
 
     </script>
 </body>

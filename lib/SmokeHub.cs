@@ -5,9 +5,9 @@ namespace SmokeTestsDashboardServer
 {
     public class SmokeHub : Hub
     {
-        public Task Send(string message)
+        public Task Send(int counter)
         {
-            return Clients.All.InvokeAsync("Send", message);
+            return Clients.All.InvokeAsync("Send", counter);
         }
     }
 }

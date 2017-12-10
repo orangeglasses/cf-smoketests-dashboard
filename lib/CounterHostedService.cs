@@ -21,7 +21,7 @@ namespace SmokeTestsDashboardServer
         {
             while (!ct.IsCancellationRequested)
             {
-                await smokeStatus.Clients.All.InvokeAsync("Send", counter++.ToString());
+                await smokeStatus.Clients.All.InvokeAsync("Send", counter++);
                 await Task.Delay(5000);
             }
         }

@@ -16,17 +16,14 @@ init =
 
 -- MESSAGES
 type Msg
-    = Roll
-    | OnResult Int
-    | Other String
+    = Counter Int
 
 
 -- VIEW
 view : Model -> Html Msg
 view model =
     div []
-        [ button [ onClick Roll ] [ text "Roll" ]
-        , text (toString model)
+        [ text (toString model)
         ]
 
 
@@ -34,22 +31,16 @@ view model =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Roll ->
-            ( model, Random.generate OnResult (Random.int 1 6) )
-
-        OnResult res ->
-            ( res, Cmd.none )
-
-        Other s ->
-            ( Result.withDefault 0 (String.toInt s), Cmd.none )
+        Counter count ->
+            ( count, Cmd.none )
 
 
 -- SUBSCRIPTIONS
-port updates : (String -> msg) -> Sub msg
+port updates : (Int -> msg) -> Sub msg
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    updates Other
+    updates Counter
 
 
 -- MAIN
