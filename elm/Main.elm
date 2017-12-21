@@ -1,22 +1,22 @@
 port module Main exposing (..)
 
 import Html exposing (Html, div, button, text, program)
-
+import Json.Decode exposing (Decoder)
 
 -- MODEL
-type alias Model = Int
+type alias Model = { count: Int }
 
 init : ( Model, Cmd Msg )
-init = ( 1, Cmd.none )
+init = ( { count = 1 }, Cmd.none )
 
 
 -- MESSAGES
-type Msg = Counter Int
+type Msg = Counter Model
 
 
 -- VIEW
 view : Model -> Html Msg
-view model = div [] [ text (toString model) ]
+view model = div [] [ text (toString model.count) ]
 
 
 -- UPDATE
@@ -27,7 +27,7 @@ update msg model =
 
 
 -- SUBSCRIPTIONS
-port updates : (Int -> msg) -> Sub msg
+port updates : (Model -> msg) -> Sub msg
 
 subscriptions : Model -> Sub Msg
 subscriptions model = updates Counter
