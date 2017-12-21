@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 
@@ -5,9 +6,9 @@ namespace SmokeTestsDashboardServer
 {
     public class SmokeHub : Hub
     {
-        public Task Send(int counter)
+        public void Send(Counter counter)
         {
-            return Clients.All.InvokeAsync("Send", counter);
+            Console.WriteLine("Counter: " + counter.Count);
         }
     }
 }

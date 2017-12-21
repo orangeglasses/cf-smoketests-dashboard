@@ -1,7 +1,9 @@
 <html>
+
 <head>
     <script type="text/javascript" src="js/lib/signalr-client-1.0.0-alpha2-final.js"></script>
 </head>
+
 <body>
     <div id="main"></div>
     <script type="text/javascript" src="js/main.js"></script>
@@ -18,12 +20,13 @@
         };
 
         smokeConn.on('send', data => {
-            console.log(data);
+            console.log(data.count);
             app.ports.updates.send(data);
         });
 
-        smokeConn.start().then(() => smokeConn.invoke('send', 42));
+        smokeConn.start().then(() => smokeConn.invoke('send', { count: 42 }));
 
     </script>
 </body>
+
 </html>

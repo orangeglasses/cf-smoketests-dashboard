@@ -5,7 +5,6 @@ using Microsoft.Extensions.Hosting;
 
 namespace SmokeTestsDashboardServer
 {
-
     internal class CounterHostedService : HostedService
     {
         private int counter;
@@ -21,7 +20,7 @@ namespace SmokeTestsDashboardServer
         {
             while (!ct.IsCancellationRequested)
             {
-                await smokeStatus.Clients.All.InvokeAsync("Send", counter++);
+                await smokeStatus.Clients.All.InvokeAsync("Send", new Counter { Count = counter++ });
                 await Task.Delay(5000);
             }
         }
