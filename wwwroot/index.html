@@ -21,8 +21,11 @@
         };
 
         smokeConn.on('updateLastReceived', dateTime => {
-            console.log(dateTime);
             app.ports.lastReceiveds.send(dateTime);
+        });
+
+        smokeConn.on('updateSmokeStatus', smokeStatus => {
+            app.ports.smokeStatuses.send(smokeStatus);
         });
 
         smokeConn.start().then(() => smokeConn.invoke('send', { count: 42 }));

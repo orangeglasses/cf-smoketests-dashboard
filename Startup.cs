@@ -13,6 +13,7 @@ namespace SmokeTestsDashboardServer
         {
             services.AddSignalR();
             services.AddSingleton<IHostedService, LastReceivedHostedService>();
+            services.AddSingleton<IHostedService, SmokeStateHostedService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

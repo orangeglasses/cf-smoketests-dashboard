@@ -5,6 +5,7 @@
   - `elm-package install mgold/elm-date-format`
   in the root of the project
 - Install .NET Core
-- Run `dotnet restore` in the root of the project
-- Run `dotnet run` or `dotnet watch run` in the root of the project
+- Run `dotnet restore`
+- Run `elm-make .\elm\Main.elm .\elm\View.elm .\elm\Model.elm --output .\wwwroot\js\main.js`
+- Run `dotnet run` or `dotnet watch run`
 - Browse to [`localhost:5000`](http://localhost:5000)

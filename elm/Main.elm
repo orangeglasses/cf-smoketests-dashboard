@@ -1,30 +1,10 @@
 port module Main exposing (..)
 
+import Model exposing (..)
+import View
+
 import Html exposing (Html, div, button, text, program)
 import Date exposing (fromString)
-import Date.Format
-
--- MODEL
-type alias DateTimeString = String
-type alias Model =
-    { lastReceived: Maybe Date.Date }
-
-init : ( Model, Cmd Msg )
-init = ( { lastReceived = Nothing }, Cmd.none )
-
-
--- MESSAGES
-type Msg =
-    UpdateLastReceived DateTimeString
-
-
--- VIEW
-view : Model -> Html Msg
-view model =
-    div []
-    [ text (case model.lastReceived of
-                Nothing -> "Unknown"
-                Just date -> date |> Date.Format.format "%B %e, %Y %H:%M:%S") ]
 
 
 -- UPDATE
@@ -36,13 +16,20 @@ update msg model =
                 dateTime = dateTimeString |> Date.fromString |> Result.toMaybe
             in
                 ( { model | lastReceived = dateTime }, Cmd.none )
+        UpdateSmokeStatus list ->
+            ( { model | lastReceived = "" |> Date.fromString |> Result.toMaybe }, Cmd.none )
 
 
 -- SUBSCRIPTIONS
 port lastReceiveds : (DateTimeString -> msg) -> Sub msg
+port smokeStatuses : (List {} -> msg) -> Sub msg
 
 subscriptions : Model -> Sub Msg
-subscriptions model = lastReceiveds UpdateLastReceived
+subscriptions model =
+    Sub.batch
+        [ lastReceiveds UpdateLastReceived
+        , smokeStatuses UpdateSmokeStatus
+        ]
 
 
 -- MAIN
@@ -50,7 +37,7 @@ main : Program Never Model Msg
 main =
     program
         { init = init
-        , view = view
+        , view = View.view
         , update = update
         , subscriptions = subscriptions
         }
