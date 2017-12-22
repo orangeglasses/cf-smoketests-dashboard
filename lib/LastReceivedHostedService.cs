@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
@@ -5,12 +6,12 @@ using Microsoft.Extensions.Hosting;
 
 namespace SmokeTestsDashboardServer
 {
-    internal class CounterHostedService : HostedService
+    internal class LastReceivedHostedService : HostedService
     {
         private int counter;
         private readonly IHubContext<SmokeHub> smokeStatus;
 
-        public CounterHostedService(IHubContext<SmokeHub> smokeStatus)
+        public LastReceivedHostedService(IHubContext<SmokeHub> smokeStatus)
         {
             this.counter = 0;
             this.smokeStatus = smokeStatus;
@@ -20,8 +21,8 @@ namespace SmokeTestsDashboardServer
         {
             while (!ct.IsCancellationRequested)
             {
-                await smokeStatus.Clients.All.InvokeAsync("Send", new Counter { Count = counter++ });
-                await Task.Delay(5000);
+                await smokeStatus.Clients.All.InvokeAsync("UpdateLastReceived", DateTimeOffset.UtcNow);
+                await Task.Delay(TimeSpan.FromSeconds(10));
             }
         }
     }

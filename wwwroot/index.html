@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <meta charset="utf-8"/>
     <script type="text/javascript" src="js/lib/signalr-client-1.0.0-alpha2-final.js"></script>
 </head>
 
@@ -19,9 +20,9 @@
             console.log('Connection closed');
         };
 
-        smokeConn.on('send', data => {
-            console.log(data.count);
-            app.ports.updates.send(data);
+        smokeConn.on('updateLastReceived', dateTime => {
+            console.log(dateTime);
+            app.ports.lastReceiveds.send(dateTime);
         });
 
         smokeConn.start().then(() => smokeConn.invoke('send', { count: 42 }));
