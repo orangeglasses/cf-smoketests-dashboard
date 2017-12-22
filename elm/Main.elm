@@ -12,12 +12,16 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         UpdateLastReceived dateTimeString ->
-            let
-                dateTime = dateTimeString |> Date.fromString |> Result.toMaybe
-            in
-                ( { model | lastReceived = dateTime }, Cmd.none )
+            updateLastReceived dateTimeString model
         UpdateSmokeStatus list ->
             ( { model | lastReceived = "" |> Date.fromString |> Result.toMaybe }, Cmd.none )
+
+updateLastReceived : String -> Model -> ( Model, Cmd Msg )
+updateLastReceived dateTimeString model =
+    let
+        dateTime = dateTimeString |> Date.fromString |> Result.toMaybe
+    in
+        ( { model | lastReceived = dateTime }, Cmd.none )
 
 
 -- SUBSCRIPTIONS
