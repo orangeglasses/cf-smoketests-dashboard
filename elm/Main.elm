@@ -1,36 +1,48 @@
 port module Main exposing (..)
 
 import Html exposing (Html, div, button, text, program)
-import Json.Decode exposing (Decoder)
+import Date exposing (fromString)
+import Date.Format
 
 -- MODEL
-type alias Model = { count: Int }
+type alias DateTimeString = String
+type alias Model =
+    { lastReceived: Maybe Date.Date }
 
 init : ( Model, Cmd Msg )
-init = ( { count = 1 }, Cmd.none )
+init = ( { lastReceived = Nothing }, Cmd.none )
 
 
 -- MESSAGES
-type Msg = Counter Model
+type Msg =
+    UpdateLastReceived DateTimeString
 
 
 -- VIEW
 view : Model -> Html Msg
-view model = div [] [ text (toString model.count) ]
+view model =
+    div []
+    [ text (case model.lastReceived of
+                Nothing -> "Unknown"
+                Just date -> date |> Date.Format.format "%B %e, %Y %H:%M:%S") ]
 
 
 -- UPDATE
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Counter count -> ( count, Cmd.none )
+        UpdateLastReceived dateTimeString ->
+            let
+                dateTime = dateTimeString |> Date.fromString |> Result.toMaybe
+            in
+                ( { model | lastReceived = dateTime }, Cmd.none )
 
 
 -- SUBSCRIPTIONS
-port updates : (Model -> msg) -> Sub msg
+port lastReceiveds : (DateTimeString -> msg) -> Sub msg
 
 subscriptions : Model -> Sub Msg
-subscriptions model = updates Counter
+subscriptions model = lastReceiveds UpdateLastReceived
 
 
 -- MAIN
