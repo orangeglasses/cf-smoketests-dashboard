@@ -5,18 +5,26 @@ import View
 
 import Html exposing (Html, div, button, text, program)
 import Date exposing (fromString)
+import Json.Decode exposing (Decoder, list, string, bool)
+import Json.Decode.Pipeline exposing (decode, required, optional)
+
 
 
 -- UPDATE
-update : Msg -> Model -> ( Model, Cmd Msg )
+update : Model.Msg -> Model.Model -> ( Model.Model, Cmd Model.Msg )
 update msg model =
     case msg of
-        UpdateLastReceived dateTimeString ->
+        Model.UpdateLastReceived dateTimeString ->
             updateLastReceived dateTimeString model
-        UpdateSmokeStatus list ->
-            ( { model | lastReceived = "" |> Date.fromString |> Result.toMaybe }, Cmd.none )
 
-updateLastReceived : String -> Model -> ( Model, Cmd Msg )
+        Model.UpdateTestResults (Ok tests) ->
+            ( { model | tests = tests }, Cmd.none )
+
+        Model.UpdateTestResults (Err err) ->
+            ( model, Cmd.none )
+
+
+updateLastReceived : String -> Model.Model -> ( Model.Model, Cmd Model.Msg )
 updateLastReceived dateTimeString model =
     let
         dateTime = dateTimeString |> Date.fromString |> Result.toMaybe
@@ -24,23 +32,29 @@ updateLastReceived dateTimeString model =
         ( { model | lastReceived = dateTime }, Cmd.none )
 
 
--- SUBSCRIPTIONS
-port lastReceiveds : (DateTimeString -> msg) -> Sub msg
-port smokeStatuses : (List {} -> msg) -> Sub msg
 
-subscriptions : Model -> Sub Msg
+-- SUBSCRIPTIONS
+port lastReceiveds : (Model.DateTimeString -> msg) -> Sub msg
+port testResults : (Json.Decode.Value -> msg) -> Sub msg
+
+subscriptions : Model.Model -> Sub Model.Msg
 subscriptions model =
     Sub.batch
-        [ lastReceiveds UpdateLastReceived
-        , smokeStatuses UpdateSmokeStatus
+        [ lastReceiveds Model.UpdateLastReceived
+        , testResults mapWorkerUpdated
         ]
+
+mapWorkerUpdated : Json.Decode.Value -> Model.Msg
+mapWorkerUpdated modelJson =
+    Model.UpdateTestResults (Json.Decode.decodeValue testResultsDecoder modelJson)
+    
 
 
 -- MAIN
-main : Program Never Model Msg
+main : Program Never Model.Model Model.Msg
 main =
     program
-        { init = init
+        { init = Model.init
         , view = View.view
         , update = update
         , subscriptions = subscriptions

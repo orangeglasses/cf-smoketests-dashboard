@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <script type="text/javascript" src="js/lib/signalr-client-1.0.0-alpha2-final.js"></script>
 </head>
 
@@ -24,8 +24,8 @@
             app.ports.lastReceiveds.send(dateTime);
         });
 
-        smokeConn.on('updateSmokeStatus', smokeStatus => {
-            app.ports.smokeStatuses.send(smokeStatus);
+        smokeConn.on('updateTestResults', testResults => {
+            app.ports.testResults.send(testResults);
         });
 
         smokeConn.start().then(() => smokeConn.invoke('send', { count: 42 }));
