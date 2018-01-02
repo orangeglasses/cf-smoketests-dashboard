@@ -21,6 +21,7 @@ type alias TestResult =
   }
 type alias SubTestResult = 
   { result: Bool
+  , name: String
   }
 
 type alias Model =
@@ -48,3 +49,4 @@ subTestResultDecoder : Decoder SubTestResult
 subTestResultDecoder =
     decode SubTestResult
         |> required "result" bool
+        |> required "name" string
