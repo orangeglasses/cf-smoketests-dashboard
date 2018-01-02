@@ -3,50 +3,46 @@ module Model exposing (..)
 import Date
 import Json.Decode exposing (Decoder, list, string, bool)
 import Json.Decode.Pipeline exposing (decode, required, optional)
+import TestResult
+
 
 -- MESSAGES
 type Msg =
     UpdateLastReceived DateTimeString
-  | UpdateTestResults (Result String (List TestResult))
+  | UpdateTestResults (Result String (List TestResult.TestResult))
+  | TestResultMsg TestResult.Msg
 
 
 -- MODELS
 type alias DateTimeString = String
 
-type alias TestResult =
-  { key: String
-  , result: Bool
-  , name: String
-  , results: List SubTestResult
-  }
-type alias SubTestResult = 
-  { result: Bool
-  , name: String
-  }
-
 type alias Model =
     { lastReceived: Maybe Date.Date
-    , tests: List TestResult }
+    , tests: List TestResult.Model }
+
+initialModel : Model
+initialModel = { lastReceived = Nothing, tests = [] }
 
 init : ( Model, Cmd Msg )
-init = ( { lastReceived = Nothing, tests = [] }, Cmd.none )
+init = ( initialModel, Cmd.none )
 
 
 -- DECODERS
-testResultsDecoder : Decoder (List TestResult)
+-- https://medium.com/@_rchaves_/elm-how-to-use-decoders-for-ports-how-to-not-use-decoders-for-json-a4f95b51473a
+testResultsDecoder : Decoder (List TestResult.TestResult)
 testResultsDecoder =
     list testResultDecoder
 
-testResultDecoder : Decoder TestResult
+testResultDecoder : Decoder TestResult.TestResult
 testResultDecoder =
-    decode TestResult
+    decode TestResult.TestResult
         |> required "key" string
         |> required "result" bool
         |> required "name" string
         |> optional "results" (list subTestResultDecoder) []
 
-subTestResultDecoder : Decoder SubTestResult
+subTestResultDecoder : Decoder TestResult.SubTestResult
 subTestResultDecoder =
-    decode SubTestResult
+    decode TestResult.SubTestResult
         |> required "result" bool
         |> required "name" string

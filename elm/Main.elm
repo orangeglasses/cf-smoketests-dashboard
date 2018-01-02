@@ -2,6 +2,7 @@ port module Main exposing (..)
 
 import Model exposing (..)
 import View
+import TestResult
 
 import Html exposing (Html, div, button, text, program)
 import Date exposing (fromString)
@@ -18,10 +19,20 @@ update msg model =
             updateLastReceived dateTimeString model
 
         Model.UpdateTestResults (Ok tests) ->
-            ( { model | tests = tests }, Cmd.none )
+            let
+                testResultModels = tests |> List.map (\t -> { showDetails = False, result = t })
+            in
+                ( { model | tests = testResultModels }, Cmd.none )
 
         Model.UpdateTestResults (Err err) ->
             ( model, Cmd.none )
+
+        Model.TestResultMsg subMsg ->
+            let
+                (updatedTestResultModel, testResultCmd) =
+                    TestResult.update subMsg (model.tests |> List.head |> Maybe.withDefault TestResult.initialModel)
+            in
+                ( { model | tests = [] }, Cmd.none )
 
 
 updateLastReceived : String -> Model.Model -> ( Model.Model, Cmd Model.Msg )

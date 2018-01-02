@@ -4,6 +4,7 @@ import Model exposing (..)
 import Html exposing (Html, div, text)
 import Date
 import Date.Format
+import TestResult
 
 view : Model -> Html Msg
 view model =
@@ -12,17 +13,13 @@ view model =
     , testsView model.tests
     ]
 
-lastReceivedView: (Maybe Date.Date) -> Html msg
+lastReceivedView: (Maybe Date.Date) -> Html Msg
 lastReceivedView lastReceived =
     text
         (case lastReceived of
             Nothing -> "Unknown"
             Just date -> date |> Date.Format.format "%B %e, %Y %H:%M:%S")
 
-testsView: (List TestResult) -> Html msg
+testsView: (List TestResult.Model) -> Html Msg
 testsView testResults =
-    div [] (testResults |> List.map testView)
-
-testView: TestResult -> Html msg
-testView testResult =
-    div [] [ text (toString testResult) ]
+    div [] (testResults |> List.map TestResult.view |> List.map (Html.map TestResultMsg))
