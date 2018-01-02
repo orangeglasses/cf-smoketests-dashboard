@@ -8,12 +8,10 @@ namespace SmokeTestsDashboardServer
 {
     internal class LastReceivedHostedService : HostedService
     {
-        private int counter;
         private readonly IHubContext<SmokeHub> smokeStatus;
 
         public LastReceivedHostedService(IHubContext<SmokeHub> smokeStatus)
         {
-            this.counter = 0;
             this.smokeStatus = smokeStatus;
         }
 
