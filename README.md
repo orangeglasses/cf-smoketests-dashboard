@@ -4,6 +4,7 @@
   - `elm-package install elm-lang/html`
   - `elm-package install mgold/elm-date-format`
   - `elm-package install elm-community/list-extra`
+  - `elm-package install mdgriffith/style-elements`
   in the root of the project
 - Install .NET Core
 - Run `dotnet restore`
