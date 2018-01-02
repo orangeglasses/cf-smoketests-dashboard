@@ -8,6 +8,7 @@ import Html exposing (Html, div, button, text, program)
 import Date exposing (fromString)
 import Json.Decode exposing (Decoder, list, string, bool)
 import Json.Decode.Pipeline exposing (decode, required, optional)
+import List.Extra exposing (getAt, updateAt)
 
 
 
@@ -20,19 +21,28 @@ update msg model =
 
         Model.UpdateTestResults (Ok tests) ->
             let
-                testResultModels = tests |> List.map (\t -> { showDetails = False, result = t })
+                testResultModels =
+                    tests
+                    |> List.indexedMap
+                        (\i t ->
+                        let
+                            -- Merge previous showDetails value into new results (or we loose toggle state).
+                            previousTestResult = (getAt i <| model.tests) |> Maybe.withDefault TestResult.initialModel
+                            showDetails = previousTestResult.showDetails
+                        in
+                            { showDetails = showDetails, result = t })
             in
                 ( { model | tests = testResultModels }, Cmd.none )
 
         Model.UpdateTestResults (Err err) ->
             ( model, Cmd.none )
 
-        Model.TestResultMsg subMsg ->
+        Model.ToggleDetails index ->
             let
-                (updatedTestResultModel, testResultCmd) =
-                    TestResult.update subMsg (model.tests |> List.head |> Maybe.withDefault TestResult.initialModel)
+                updatedTests =
+                    updateAt index (\t -> { t | showDetails = not t.showDetails }) <| model.tests
             in
-                ( { model | tests = [] }, Cmd.none )
+                ( { model | tests = updatedTests }, Cmd.none )
 
 
 updateLastReceived : String -> Model.Model -> ( Model.Model, Cmd Model.Msg )
@@ -52,11 +62,11 @@ subscriptions : Model.Model -> Sub Model.Msg
 subscriptions model =
     Sub.batch
         [ lastReceiveds Model.UpdateLastReceived
-        , testResults testResultsUpdated
+        , testResults (testResultsUpdated model)
         ]
 
-testResultsUpdated : Json.Decode.Value -> Model.Msg
-testResultsUpdated modelJson =
+testResultsUpdated : Model.Model -> Json.Decode.Value -> Model.Msg
+testResultsUpdated model modelJson =
     Model.UpdateTestResults (Json.Decode.decodeValue testResultsDecoder modelJson)
     
 

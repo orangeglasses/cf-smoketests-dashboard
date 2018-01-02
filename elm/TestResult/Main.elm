@@ -20,27 +20,16 @@ type alias SubTestResult =
   , name: String
   }
 
+type alias Config msg =
+  { toggleMsg: msg }
+
 initialModel: Model
 initialModel = { showDetails = False, result = { key = "", result = False, name = "", results = [] } }
 
 
--- MESSAGES
-type Msg =
-    ToggleDetails
-
-
 -- VIEW
-view : Model -> Html Msg
-view model =
+view : Config msg -> Model -> Html msg
+view config model =
     div
-    [ style [("background-color", "red")], onMouseEnter ToggleDetails, onMouseLeave ToggleDetails, onClick ToggleDetails] [ text (toString model)
-    , button [Html.Events.onClick ToggleDetails] [text (toString model.showDetails)]
+    [ style [("background-color", "red")], onMouseEnter config.toggleMsg, onMouseLeave config.toggleMsg] [ text (toString model)
     ]
-
-
--- UPDATE
-update: Msg -> Model -> (Model, Cmd Msg)
-update msg model =
-    case msg of
-        ToggleDetails ->
-            ( { model | showDetails = not model.showDetails }, Cmd.none)

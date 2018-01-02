@@ -10,7 +10,7 @@ import TestResult
 type Msg =
     UpdateLastReceived DateTimeString
   | UpdateTestResults (Result String (List TestResult.TestResult))
-  | TestResultMsg TestResult.Msg
+  | ToggleDetails Int
 
 
 -- MODELS

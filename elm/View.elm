@@ -15,11 +15,20 @@ view model =
 
 lastReceivedView: (Maybe Date.Date) -> Html Msg
 lastReceivedView lastReceived =
-    text
+    div []
+    [ text
         (case lastReceived of
             Nothing -> "Unknown"
-            Just date -> date |> Date.Format.format "%B %e, %Y %H:%M:%S")
+            Just date -> date |> Date.Format.format "%B %e, %Y %H:%M:%S") ]
 
 testsView: (List TestResult.Model) -> Html Msg
 testsView testResults =
-    div [] (testResults |> List.map TestResult.view |> List.map (Html.map TestResultMsg))
+    div
+        []
+        (testResults
+            |> List.indexedMap
+                (\index testResult ->
+                    let
+                        testResultConfig = { toggleMsg = ToggleDetails index }
+                    in
+                        TestResult.view testResultConfig testResult))
