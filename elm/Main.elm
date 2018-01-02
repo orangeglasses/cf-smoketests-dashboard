@@ -41,11 +41,11 @@ subscriptions : Model.Model -> Sub Model.Msg
 subscriptions model =
     Sub.batch
         [ lastReceiveds Model.UpdateLastReceived
-        , testResults mapWorkerUpdated
+        , testResults testResultsUpdated
         ]
 
-mapWorkerUpdated : Json.Decode.Value -> Model.Msg
-mapWorkerUpdated modelJson =
+testResultsUpdated : Json.Decode.Value -> Model.Msg
+testResultsUpdated modelJson =
     Model.UpdateTestResults (Json.Decode.decodeValue testResultsDecoder modelJson)
     
 
