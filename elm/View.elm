@@ -1,34 +1,41 @@
 module View exposing (view)
 
 import Model exposing (..)
-import Html exposing (Html, div, text)
-import Date
-import Date.Format
+import AppStyles exposing (..)
 import TestResult
 
+import Html exposing (Html)
+import Date
+import Date.Format
+
+import Element
+
+-- VIEWS
 view : Model -> Html Msg
 view model =
-    div []
-    [ lastReceivedView model.lastReceived
-    , testsView model.tests
-    ]
+    Element.layout stylesheet <| (pageWrapper model)
 
-lastReceivedView: (Maybe Date.Date) -> Html Msg
-lastReceivedView lastReceived =
-    div []
-    [ text
-        (case lastReceived of
-            Nothing -> "Unknown"
-            Just date -> date |> Date.Format.format "%B %e, %Y %H:%M:%S") ]
+pageWrapper model =
+    Element.column AppStyles.PageStyle
+        []
+        [ headerArea model.lastReceived
+        , contentArea model.tests
+        ]
 
-testsView: (List TestResult.Model) -> Html Msg
-testsView testResults =
-    div
+headerArea lastReceived =
+    Element.el AppStyles.HeaderStyle
+        []
+        ( Element.text
+            (case lastReceived of
+                Nothing -> "Unknown"
+                Just date -> date |> Date.Format.format "%B %e, %Y %H:%M:%S") )
+
+contentArea testResults =
+    Element.wrappedRow AppStyles.ContentStyle
         []
         (testResults
-            |> List.indexedMap
-                (\index testResult ->
-                    let
+            |> List.indexedMap (\index testResult ->
+                let
                         testResultConfig = { toggleMsg = ToggleDetails index }
                     in
                         TestResult.view testResultConfig testResult))

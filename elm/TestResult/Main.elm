@@ -1,9 +1,11 @@
 module TestResult exposing (..)
 
-import Html exposing (Html, div, text, button)
-import Html.Events exposing (onMouseEnter, onMouseLeave, onClick)
-import Html.Attributes exposing (style)
+import AppStyles exposing (..)
 
+import Element
+import Element.Events exposing (onMouseEnter, onMouseLeave)
+
+    
 
 -- MODEL
 type alias Model =
@@ -28,8 +30,8 @@ initialModel = { showDetails = False, result = { key = "", result = False, name 
 
 
 -- VIEW
-view : Config msg -> Model -> Html msg
+view : Config msg -> Model -> Element.Element AppStyles.DashboardStyles variation msg
 view config model =
-    div
-    [ style [("background-color", "red")], onMouseEnter config.toggleMsg, onMouseLeave config.toggleMsg] [ text (toString model)
-    ]
+    Element.el TestResultStyle
+        [ onMouseEnter config.toggleMsg, onMouseLeave config.toggleMsg ]
+        (Element.text (toString model))
