@@ -6,6 +6,8 @@ jobs:
   serial: true
   plan:
   - get: resource-git-smoketests-dashboard
+  - task: task-deploy
+    file: resource-git-smoketests-dashboard/ci/deploy.yml
   on_failure:
     put: slack-alert
     params:
