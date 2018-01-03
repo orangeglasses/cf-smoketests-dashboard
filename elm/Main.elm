@@ -39,6 +39,7 @@ update msg model =
 
         Model.ToggleDetails index ->
             let
+                -- Toggle show details in test results.
                 updatedTests =
                     updateAt index (\t -> { t | showDetails = not t.showDetails }) <| model.tests
             in

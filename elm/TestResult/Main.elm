@@ -44,14 +44,17 @@ view config model =
             , padding 20
             , spacing 20
             ]
-            [ testResultTitle model.result.name
+            [ testResultTitle model.showDetails model.result.name
             , testSubResults model.showDetails model.result.result model.result.results
             ]
 
-testResultTitle title =
-    Element.el TestResultTitleStyle
-        []
-        (Element.text title)
+testResultTitle showDetails title =
+    let
+        detailsStatusStyle = if showDetails then DetailsShown else DetailsHidden
+    in
+        Element.el (TestResultTitleStyle detailsStatusStyle)
+            []
+            (Element.text title)
 
 testSubResults showDetails overallResult subResults =
     Element.when

@@ -18,19 +18,19 @@ view model =
 
 pageWrapper model =
     Element.column AppStyles.PageStyle
-        [ padding 20, spacing 20, height (percent 100) ]
+        [ padding 20, spacing 40, height (percent 100) ]
         [ headerArea model.lastReceived
         , contentArea model.tests
         ]
 
 headerArea lastReceived =
-    Element.row AppStyles.HeaderStyle
+    Element.row (AppStyles.HeaderStyle Good)
         [ alignRight ]
         [ Element.text "Last result received: "
         , Element.text
             (case lastReceived of
                 Nothing -> "<unknown>"
-                Just date -> date |> Date.Format.format "%B %e, %Y %H:%M:%S")
+                Just date -> date |> Date.Format.format "%B %d, %Y %H:%M:%S")
         ]
 
 contentArea testResults =
