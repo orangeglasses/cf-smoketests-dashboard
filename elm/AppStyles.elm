@@ -32,6 +32,10 @@ stylesheet =
             [ Color.background (rgba 37 37 38 255)
             , Font.typeface [ Font.font "Source Sans Pro", Font.font "Trebuchet MS", Font.font "Lucida Grande", Font.font "Bitstream Vera Sans", Font.font "Helvetica Neue", Font.sansSerif ]
             ]
+        , Style.style HeaderStyle
+            []
+        , Style.style ContentStyle
+            []
         , Style.style (TestResultStyle Success)
             [ Color.background (rgba 46 46 46 255)
             , Color.text (rgba 146 197 105 255)
@@ -46,6 +50,8 @@ stylesheet =
             ]
         , Style.style TestResultTitleStyle
             [ Font.size 30 ]
+        , Style.style TestResultListStyle
+            []
         , Style.style (TestResultItemStyle Good)
             [ Color.text (rgba 146 197 105 255) ]
         , Style.style (TestResultItemStyle OK)
