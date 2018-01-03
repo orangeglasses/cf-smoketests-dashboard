@@ -1,0 +1,34 @@
+---
+jobs:
+- name: push-smoketest-dashboard
+  build_logs_to_retain: 100
+  public: false
+  serial: true
+  plan:
+  - get: resource-git-smoketests-dashboard
+  on_failure:
+    put: slack-alert
+    params:
+      username: {{slack-username}}
+      channel: {{slack-channel}}
+      silent: true
+      text: "Error deploying smoketests dashboard!"
+
+resource_types:
+- name: slack-notification
+  type: docker-image
+  source:
+    repository: cfcommunity/slack-notification-resource
+    tag: latest
+
+resources:
+- name: resource-git-smoketests-dashboard
+  type: git
+  source:
+    uri: {{git-uri-smoketests-dashboard}}
+    private_key: {{git-private-key}}
+
+- name: slack-alert
+  type: slack-notification
+  source:
+    url: {{slack-webtoken}}
