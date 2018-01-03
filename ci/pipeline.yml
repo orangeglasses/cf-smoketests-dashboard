@@ -26,6 +26,7 @@ resources:
   type: git
   source:
     uri: {{git-uri-smoketests-dashboard}}
+    branch: deployment
     private_key: {{git-private-key}}
 
 - name: slack-alert
