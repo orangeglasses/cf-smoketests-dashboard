@@ -6,9 +6,5 @@ namespace SmokeTestsDashboardServer
 {
     public class SmokeHub : Hub
     {
-        public void Send(Counter counter)
-        {
-            Console.WriteLine("Counter: " + counter.Count);
-        }
     }
 }

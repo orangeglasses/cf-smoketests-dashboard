@@ -28,8 +28,6 @@
             app.ports.testResults.send(testResults);
         });
 
-        smokeConn.start().then(() => smokeConn.invoke('send', { count: 42 }));
-
     </script>
 </body>
 
