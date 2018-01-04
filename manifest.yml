@@ -2,6 +2,6 @@ applications:
 - name: smokeTestsDashboard
   instances: 1
   memory: 128M
+  disk: 512M
   stack: cflinuxfs2
-  buildpack: dotnet_core_buildpack
-  path: ./bin/Release/netcoreapp2.0/ubuntu.14.04-x64
+  buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack.git
