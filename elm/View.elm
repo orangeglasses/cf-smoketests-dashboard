@@ -24,7 +24,17 @@ pageWrapper model =
         ]
 
 headerArea lastReceived =
-    Element.row (AppStyles.HeaderStyle lastReceived.status)
+    let
+        headerStyle =
+            case lastReceived.status of
+                Nothing -> OK
+                Just status ->
+                    if status >= 1 then Bad
+                    else if status > 0 then OK
+                    else Good
+    in
+        
+    Element.row (AppStyles.HeaderStyle headerStyle)
         [ alignRight ]
         [ Element.text
             (case lastReceived.diffText of
