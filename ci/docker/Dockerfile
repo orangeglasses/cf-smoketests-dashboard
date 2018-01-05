@@ -4,6 +4,7 @@ LABEL maintainer="Ronald Wildenberg"
 
 ENV DOTNET_SDK_VERSION "2.1.3"
 ENV DOTNET_CLI_TELEMETRY_OPTOUT 1
+ENV DOTNET_SKIP_FIRST_TIME_EXPERIENCE 1
 ENV CF_CLI_VERSION "6.32.0"
 
 # https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x#install-net-core-for-debian-8-or-debian-9-64-bit
