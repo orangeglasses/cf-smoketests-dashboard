@@ -1,21 +1,24 @@
 module View exposing (view)
 
-import Model exposing (..)
 import AppStyles exposing (..)
-import TestResult
+import Model exposing (..)
+import TestResult.Model as TestResults exposing (..)
+import TestResult.View as TestResults exposing (..)
 
 import Html exposing (Html)
-import Date
-import Date.Format
-
 import Element
 import Element.Attributes exposing (px, padding, spacing, alignRight, width, height, percent)
 
+
+
 -- VIEWS
-view : Model -> Html Msg
+
+view : Model.Model -> Html Msg
 view model =
     Element.layout stylesheet <| (pageWrapper model)
 
+
+pageWrapper : Model.Model -> Element.Element DashboardStyles variation Msg
 pageWrapper model =
     Element.column AppStyles.PageStyle
         [ padding 20, spacing 40, height (percent 100) ]
@@ -23,6 +26,8 @@ pageWrapper model =
         , contentArea model.tests
         ]
 
+
+headerArea : LastReceived -> Element.Element DashboardStyles variation Msg
 headerArea lastReceived =
     let
         headerStyle =
@@ -33,16 +38,20 @@ headerArea lastReceived =
                     else if status > 0 then OK
                     else Good
     in
-        
-    Element.row (AppStyles.HeaderStyle headerStyle)
-        [ alignRight ]
-        [ Element.text
-            (case lastReceived.diffText of
-                Nothing -> "<unknown>"
-                Just string -> string)
-        , Element.text " ago"
-        ]
+        Element.row (AppStyles.HeaderStyle headerStyle)
+            [ alignRight ]
+            [ Element.text
+                (case lastReceived.diffText of
+                    Nothing -> "<unknown>"
+                    Just string -> string)
+            , Element.text
+                (case lastReceived.diffText of
+                    Nothing -> ""
+                    Just string -> " ago")
+            ]
 
+
+contentArea : List TestResults.Model -> Element.Element DashboardStyles variation Msg
 contentArea testResults =
     Element.wrappedRow AppStyles.ContentStyle
         [ spacing 40 ]
@@ -51,4 +60,4 @@ contentArea testResults =
                 let
                     testResultConfig = { toggleMsg = ToggleDetails index }
                 in
-                    TestResult.view testResultConfig testResult))
+                    TestResults.view testResultConfig testResult))

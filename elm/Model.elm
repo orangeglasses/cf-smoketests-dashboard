@@ -1,17 +1,18 @@
 module Model exposing (..)
 
+import TestResult.Model as TestResults
+
 import Date
 import Json.Decode exposing (Decoder, list, string, float, bool, nullable, andThen, succeed, fail)
 import Json.Decode.Pipeline exposing (decode, required, optional)
 import Task
-import TestResult
 
 
 -- MESSAGES
 type Msg =
     SetNow Date.Date
   | UpdateLastReceived (Result String LastReceived)
-  | UpdateTestResults (Result String (List TestResult.TestResult))
+  | UpdateTestResults (Result String (List TestResults.TestResult))
   | ToggleDetails Int
 
 
@@ -24,7 +25,7 @@ type alias LastReceived =
 
 type alias Model =
     { lastReceived: LastReceived
-    , tests: List TestResult.Model
+    , tests: List TestResults.Model
     }
 
 initialModel : Model
@@ -45,25 +46,6 @@ lastReceivedDecoder =
         |> optional "time" (nullable date) Nothing
         |> optional "diffText" (nullable string) Nothing
         |> optional "status" (nullable float) Nothing
-
-
-testResultsDecoder : Decoder (List TestResult.TestResult)
-testResultsDecoder =
-    list testResultDecoder
-
-testResultDecoder : Decoder TestResult.TestResult
-testResultDecoder =
-    decode TestResult.TestResult
-        |> required "key" string
-        |> required "result" bool
-        |> required "name" string
-        |> optional "results" (list subTestResultDecoder) []
-
-subTestResultDecoder : Decoder TestResult.SubTestResult
-subTestResultDecoder =
-    decode TestResult.SubTestResult
-        |> required "result" bool
-        |> required "name" string
 
 -- https://www.brianthicks.com/post/2017/01/13/create-custom-json-decoders-in-elm-018/
 -- https://github.com/circuithub/elm-json-extra/blob/master/src/Json/Decode/Extra.elm

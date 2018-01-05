@@ -2,12 +2,10 @@ port module Main exposing (..)
 
 import Model exposing (..)
 import View
-import TestResult
+import TestResult.Model as TestResults exposing (initialModel, testResultsDecoder)
 
-import Html exposing (Html, div, button, text, program)
-import Date exposing (fromString)
-import Json.Decode exposing (Decoder, list, string, bool)
-import Json.Decode.Pipeline exposing (decode, required, optional)
+import Html exposing (program)
+import Json.Decode exposing (Decoder)
 import List.Extra exposing (getAt, updateAt)
 
 
@@ -38,7 +36,7 @@ update msg model =
                         (\i t ->
                         let
                             -- Merge previous showDetails value into new results (or we loose toggle state).
-                            previousTestResult = (getAt i <| model.tests) |> Maybe.withDefault TestResult.initialModel
+                            previousTestResult = (getAt i <| model.tests) |> Maybe.withDefault TestResults.initialModel
                             showDetails = previousTestResult.showDetails
                         in
                             { showDetails = showDetails, result = t })
@@ -75,7 +73,7 @@ lastReceivedUpdated modelJson =
 
 testResultsUpdated : Model.Model -> Json.Decode.Value -> Model.Msg
 testResultsUpdated model modelJson =
-    Model.UpdateTestResults (Json.Decode.decodeValue testResultsDecoder modelJson)
+    Model.UpdateTestResults (Json.Decode.decodeValue TestResults.testResultsDecoder modelJson)
     
 
 

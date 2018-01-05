@@ -1,36 +1,16 @@
-module TestResult exposing (..)
+module TestResult.View exposing (view)
 
 import AppStyles exposing (..)
+import TestResult.Model exposing (..)
 
 import Element
 import Element.Attributes exposing (px, padding, spacing, alignRight, width, height)
 import Element.Events exposing (onMouseEnter, onMouseLeave)
 
-    
-
--- MODEL
-type alias Model =
-  { showDetails: Bool
-  , result: TestResult }
-type alias TestResult =
-  { key: String
-  , result: Bool
-  , name: String
-  , results: List SubTestResult
-  }
-type alias SubTestResult =
-  { result: Bool
-  , name: String
-  }
-
-type alias Config msg =
-  { toggleMsg: msg }
-
-initialModel: Model
-initialModel = { showDetails = False, result = { key = "", result = False, name = "", results = [] } }
 
 
 -- VIEW
+
 view : Config msg -> Model -> Element.Element AppStyles.DashboardStyles variation msg
 view config model =
     let
