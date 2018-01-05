@@ -16,8 +16,19 @@ import List.Extra exposing (getAt, updateAt)
 update : Model.Msg -> Model.Model -> ( Model.Model, Cmd Model.Msg )
 update msg model =
     case msg of
-        Model.UpdateLastReceived dateTimeString ->
-            updateLastReceived dateTimeString model
+        Model.SetNow date ->
+            let
+                oldLastReceived = model.lastReceived
+                newLastReceived =
+                    { oldLastReceived | time = Just date }
+            in
+                ( { model | lastReceived = newLastReceived }, Cmd.none )
+
+        Model.UpdateLastReceived (Ok lastReceived) ->
+            ( { model | lastReceived = lastReceived }, Cmd.none )
+
+        Model.UpdateLastReceived (Err err) ->
+            ( model, Cmd.none )
 
         Model.UpdateTestResults (Ok tests) ->
             let
@@ -46,25 +57,21 @@ update msg model =
                 ( { model | tests = updatedTests }, Cmd.none )
 
 
-updateLastReceived : String -> Model.Model -> ( Model.Model, Cmd Model.Msg )
-updateLastReceived dateTimeString model =
-    let
-        dateTime = dateTimeString |> Date.fromString |> Result.toMaybe
-    in
-        ( { model | lastReceived = dateTime }, Cmd.none )
-
-
 
 -- SUBSCRIPTIONS
-port lastReceiveds : (Model.DateTimeString -> msg) -> Sub msg
+port lastReceiveds : (Json.Decode.Value -> msg) -> Sub msg
 port testResults : (Json.Decode.Value -> msg) -> Sub msg
 
 subscriptions : Model.Model -> Sub Model.Msg
 subscriptions model =
     Sub.batch
-        [ lastReceiveds Model.UpdateLastReceived
+        [ lastReceiveds lastReceivedUpdated
         , testResults (testResultsUpdated model)
         ]
+
+lastReceivedUpdated : Json.Decode.Value -> Model.Msg
+lastReceivedUpdated modelJson =
+    Model.UpdateLastReceived (Json.Decode.decodeValue lastReceivedDecoder modelJson)
 
 testResultsUpdated : Model.Model -> Json.Decode.Value -> Model.Msg
 testResultsUpdated model modelJson =

@@ -28,6 +28,8 @@
             app.ports.testResults.send(testResults);
         });
 
+        smokeConn.start().then(() => smokeConn.invoke('connect'));
+
     </script>
 </body>
 

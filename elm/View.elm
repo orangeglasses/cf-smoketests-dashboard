@@ -24,13 +24,13 @@ pageWrapper model =
         ]
 
 headerArea lastReceived =
-    Element.row (AppStyles.HeaderStyle Good)
+    Element.row (AppStyles.HeaderStyle lastReceived.status)
         [ alignRight ]
-        [ Element.text "Last result received: "
-        , Element.text
-            (case lastReceived of
+        [ Element.text
+            (case lastReceived.diffText of
                 Nothing -> "<unknown>"
-                Just date -> date |> Date.Format.format "%B %d, %Y %H:%M:%S")
+                Just string -> string)
+        , Element.text " ago"
         ]
 
 contentArea testResults =

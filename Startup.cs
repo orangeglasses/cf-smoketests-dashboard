@@ -12,14 +12,12 @@ namespace SmokeTestsDashboardServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSignalR();
-
             services.AddSingleton<IHostedService, LastReceivedHostedService>();
-            services.AddSingleton<IHostedService, SmokeStateHostedService>();
-
             services.AddMvc(options =>
             {
                 options.InputFormatters.Add(new TextPlainInputFormatter());
             });
+            services.AddSingleton<SmokeStateRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,7 +29,6 @@ namespace SmokeTestsDashboardServer
             {
                 routes.MapHub<SmokeHub>("smoke");
             });
-
             app.UseMvc();
         }
     }
