@@ -4,7 +4,7 @@ import AppStyles exposing (..)
 import TestResult.Model as TestResults exposing (..)
 
 import Element
-import Element.Attributes exposing (px, padding, spacing, alignRight, width, height)
+import Element.Attributes exposing (px, padding, spacing, alignRight, width, height, attribute)
 import Element.Events exposing (onMouseEnter, onMouseLeave)
 
 
@@ -57,7 +57,9 @@ testSubResult overallResult subResult =
             if overallResult then Good
             else if subResult.result then OK
             else Bad
+        toolTip =
+            subResult.error |> Maybe.withDefault ""
     in
         Element.el (TestResultItemStyle testResultItemStyle)
-            []
+            [ attribute "title" toolTip ]
             (Element.text subResult.name)
