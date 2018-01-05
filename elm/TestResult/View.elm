@@ -1,7 +1,7 @@
 module TestResult.View exposing (view)
 
 import AppStyles exposing (..)
-import TestResult.Model exposing (..)
+import TestResult.Model as TestResults exposing (..)
 
 import Element
 import Element.Attributes exposing (px, padding, spacing, alignRight, width, height)
@@ -28,6 +28,8 @@ view config model =
             , testSubResults model.showDetails model.result.result model.result.results
             ]
 
+
+testResultTitle : Bool -> String -> Element.Element DashboardStyles variation msg
 testResultTitle showDetails title =
     let
         detailsStatusStyle = if showDetails then DetailsShown else DetailsHidden
@@ -36,6 +38,8 @@ testResultTitle showDetails title =
             []
             (Element.text title)
 
+
+testSubResults : Bool -> Bool -> List SubTestResult -> Element.Element DashboardStyles variation msg
 testSubResults showDetails overallResult subResults =
     Element.when
         showDetails
@@ -45,6 +49,8 @@ testSubResults showDetails overallResult subResults =
                 |> List.map (\r ->
                     testSubResult overallResult r)) )
 
+
+testSubResult : Bool -> TestResults.SubTestResult -> Element.Element DashboardStyles variation msg
 testSubResult overallResult subResult =
     let
         testResultItemStyle =

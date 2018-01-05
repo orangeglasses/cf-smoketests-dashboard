@@ -19,6 +19,7 @@ type alias TestResult =
 type alias SubTestResult =
   { result: Bool
   , name: String
+  , error: Maybe String
   }
 
 type alias Config msg =
@@ -48,3 +49,4 @@ subTestResultDecoder =
     decode SubTestResult
         |> required "result" bool
         |> required "name" string
+        |> optional "error" (nullable string) Nothing

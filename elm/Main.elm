@@ -11,6 +11,7 @@ import List.Extra exposing (getAt, updateAt)
 
 
 -- UPDATE
+
 update : Model.Msg -> Model.Model -> ( Model.Model, Cmd Model.Msg )
 update msg model =
     case msg of
@@ -57,6 +58,7 @@ update msg model =
 
 
 -- SUBSCRIPTIONS
+
 port lastReceiveds : (Json.Decode.Value -> msg) -> Sub msg
 port testResults : (Json.Decode.Value -> msg) -> Sub msg
 
@@ -78,6 +80,7 @@ testResultsUpdated model modelJson =
 
 
 -- MAIN
+
 main : Program Never Model.Model Model.Msg
 main =
     program
