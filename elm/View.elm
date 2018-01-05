@@ -15,7 +15,7 @@ import Element.Attributes exposing (px, padding, spacing, alignRight, width, hei
 
 view : Model.Model -> Html Msg
 view model =
-    Element.layout stylesheet <| (pageWrapper model)
+    Element.layout (stylesheet model) <| (pageWrapper model)
 
 
 pageWrapper : Model.Model -> Element.Element DashboardStyles variation Msg
@@ -29,26 +29,17 @@ pageWrapper model =
 
 headerArea : LastReceived -> Element.Element DashboardStyles variation Msg
 headerArea lastReceived =
-    let
-        headerStyle =
-            case lastReceived.status of
-                Nothing -> OK
-                Just status ->
-                    if status >= 1 then Bad
-                    else if status > 0 then OK
-                    else Good
-    in
-        Element.row (AppStyles.HeaderStyle headerStyle)
-            [ alignRight ]
-            [ Element.text
-                (case lastReceived.diffText of
-                    Nothing -> "<unknown>"
-                    Just string -> string)
-            , Element.text
-                (case lastReceived.diffText of
-                    Nothing -> ""
-                    Just string -> " ago")
-            ]
+    Element.row AppStyles.HeaderStyle
+        [ alignRight ]
+        [ Element.text
+            (case lastReceived.diffText of
+                Nothing -> "<unknown>"
+                Just string -> string)
+        , Element.text
+            (case lastReceived.diffText of
+                Nothing -> ""
+                Just string -> " ago")
+        ]
 
 
 contentArea : List TestResults.Model -> Element.Element DashboardStyles variation Msg
