@@ -8,6 +8,13 @@ jobs:
   - get: resource-git-smoketests-dashboard
   - task: task-deploy
     file: resource-git-smoketests-dashboard/ci/deploy.yml
+    params:
+      api: {{cf-api}}
+      username: {{cf-user}}
+      password: {{cf-password}}
+      organization: {{cf-org}}
+      space: {{cf-space}}
+      manifest: {{manifest_filename}}
   on_failure:
     put: slack-alert
     params:
