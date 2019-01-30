@@ -69,11 +69,11 @@ stylesheet model =
                 if status >= 1 then statusBadColor
                 else if status > 0 then
                     let
-                        red   = 0 --status * (statusBadRed   - statusOKRed) + statusOKRed
-                        green = 0 --status * (statusBadGreen - statusOKGreen) + statusOKGreen
-                        blue  = 0 --status * (statusBadBlue  - statusOKBlue) + statusOKBlue
+                        red   = status * (statusBadRed   - statusOKRed) + statusOKRed
+                        green = status * (statusBadGreen - statusOKGreen) + statusOKGreen
+                        blue  = status * (statusBadBlue  - statusOKBlue) + statusOKBlue
                     in
-                        rgba red green blue 1
+                        rgba red green blue 255
                 else statusGoodColor
     in
         Style.styleSheet
