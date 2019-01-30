@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using HostingExtensions = Microsoft.Extensions.Hosting;
 
 namespace SmokeTestsDashboardServer
 {
@@ -12,7 +12,7 @@ namespace SmokeTestsDashboardServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSignalR();
-            services.AddSingleton<IHostedService, LastReceivedHostedService>();
+            services.AddSingleton<HostingExtensions.IHostedService, LastReceivedHostedService>();
             services.AddMvc(options =>
             {
                 options.InputFormatters.Add(new TextPlainInputFormatter());
@@ -27,7 +27,7 @@ namespace SmokeTestsDashboardServer
             app.UseStaticFiles();
             app.UseSignalR(routes =>
             {
-                routes.MapHub<SmokeHub>("smoke");
+                routes.MapHub<SmokeHub>("/smoke");
             });
             app.UseMvc();
         }

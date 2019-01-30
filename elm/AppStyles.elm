@@ -2,12 +2,12 @@ module AppStyles exposing (stylesheet, DashboardStyles(..), TestResultStyle(..),
 
 import Model exposing (Model)
 
-import Style exposing (..)
+import Style exposing (rgba, StyleSheet)
 import Style.Border as Border
-import Style.Color as Color
+import Style.Color as Color 
 import Style.Font as Font
 import Style.Transition as Transition
-import Color exposing (..)
+import Color
 
 
 type DashboardStyles =
@@ -32,30 +32,30 @@ type DetailsStatusStyle =
     DetailsShown
   | DetailsHidden
 
-backgroundColor : Color
+backgroundColor : Style.Color
 backgroundColor = (rgba 37 37 38 255)
 
-testResultBackgroundColor : Color
+testResultBackgroundColor : Style.Color
 testResultBackgroundColor = (rgba 46 46 46 255)
 
-statusOKRed : Int
+statusOKRed : Float
 statusOKRed = 233
-statusOKGreen : Int
+statusOKGreen : Float
 statusOKGreen = 161
-statusOKBlue : Int
+statusOKBlue : Float
 statusOKBlue = 77
-statusBadRed : Int
+statusBadRed : Float
 statusBadRed = 246
-statusBadGreen : Int
+statusBadGreen : Float
 statusBadGreen = 84
-statusBadBlue : Int
+statusBadBlue : Float
 statusBadBlue = 83
 
-statusGoodColor : Color
+statusGoodColor : Style.Color
 statusGoodColor = (rgba 146 197 105 255)
-statusOKColor : Color
+statusOKColor : Style.Color
 statusOKColor = (rgba statusOKRed statusOKGreen statusOKBlue 255)
-statusBadColor : Color
+statusBadColor : Style.Color
 statusBadColor = (rgba statusBadRed statusBadGreen statusBadBlue 255)
 
 stylesheet : Model -> StyleSheet DashboardStyles variation
@@ -69,11 +69,11 @@ stylesheet model =
                 if status >= 1 then statusBadColor
                 else if status > 0 then
                     let
-                        red   = status * ((statusBadRed   - statusOKRed)   |> toFloat) + (statusOKRed   |> toFloat) |> round
-                        green = status * ((statusBadGreen - statusOKGreen) |> toFloat) + (statusOKGreen |> toFloat) |> round
-                        blue  = status * ((statusBadBlue  - statusOKBlue)  |> toFloat) + (statusOKBlue  |> toFloat) |> round
+                        red   = 0 --status * (statusBadRed   - statusOKRed) + statusOKRed
+                        green = 0 --status * (statusBadGreen - statusOKGreen) + statusOKGreen
+                        blue  = 0 --status * (statusBadBlue  - statusOKBlue) + statusOKBlue
                     in
-                        rgba red green blue 255
+                        rgba red green blue 1
                 else statusGoodColor
     in
         Style.styleSheet

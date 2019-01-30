@@ -2,23 +2,25 @@ module Model exposing (..)
 
 import TestResult.Model as TestResults
 
-import Date
-import Json.Decode exposing (Decoder, list, string, float, bool, nullable, andThen, succeed, fail)
-import Json.Decode.Pipeline exposing (decode, required, optional)
+import Time exposing (..)
+import Iso8601 as Iso exposing (..)
+import Json.Decode as Decode exposing (Decoder, Error, list, string, float, bool, nullable, andThen, succeed, fail)
+import Parser exposing ((|.), (|=), Parser, andThen, end, int, map, oneOf, succeed, symbol)
+import Json.Decode.Pipeline exposing (required, optional, hardcoded)
 import Task
 
 
 -- MESSAGES
 type Msg =
-    SetNow Date.Date
-  | UpdateLastReceived (Result String LastReceived)
-  | UpdateTestResults (Result String (List TestResults.TestResult))
+    SetNow Time.Posix
+  | UpdateLastReceived (Result Error LastReceived)
+  | UpdateTestResults (Result Error (List TestResults.TestResult))
   | ToggleDetails Int
 
 
 -- MODELS
 type alias LastReceived =
-    { time: Maybe Date.Date
+    { time: Maybe Time.Posix
     , diffText: Maybe String
     , status: Maybe Float
     }
@@ -31,10 +33,10 @@ type alias Model =
 initialModel : Model
 initialModel = { lastReceived = { time = Nothing, diffText = Nothing, status = Nothing }, tests = [] }
 
-init : ( Model, Cmd Msg )
-init =
+init : () -> ( Model, Cmd Msg )
+init flags =
     ( initialModel
-    , Date.now |> Task.perform SetNow
+    , Time.now |> Task.perform SetNow
     )
 
 
@@ -42,20 +44,20 @@ init =
 -- https://medium.com/@_rchaves_/elm-how-to-use-decoders-for-ports-how-to-not-use-decoders-for-json-a4f95b51473a
 lastReceivedDecoder : Decoder LastReceived
 lastReceivedDecoder =
-    decode LastReceived
-        |> optional "time" (nullable date) Nothing
+    Decode.succeed LastReceived
+        |> optional "time" (nullable time) Nothing
         |> optional "diffText" (nullable string) Nothing
         |> optional "status" (nullable float) Nothing
 
--- https://www.brianthicks.com/post/2017/01/13/create-custom-json-decoders-in-elm-018/
--- https://github.com/circuithub/elm-json-extra/blob/master/src/Json/Decode/Extra.elm
-date : Decoder Date.Date
-date =
-    let
-        convert : String -> Decoder Date.Date
-        convert raw =
-            case Date.fromString raw of
-                Ok date -> succeed date
-                Err error -> fail error 
-    in
-        string |> andThen convert
+time : Decoder Time.Posix
+time =
+    Decode.string
+        |> Decode.andThen
+            (\str ->
+                case toTime str of
+                    Err deadEnds ->
+                        Decode.fail <| Parser.deadEndsToString deadEnds
+
+                    Ok t ->
+                        Decode.succeed t
+            )

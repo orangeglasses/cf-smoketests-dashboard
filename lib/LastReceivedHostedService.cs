@@ -35,7 +35,7 @@ namespace SmokeTestsDashboardServer
             {
                 // Get last received timestamp from smoke state and update UI via SignalR.
                 var lastReceived = GetLastReceived(smokeStateRepo.LastReceived);
-                await smokeHub.Clients.All.InvokeAsync("UpdateLastReceived", lastReceived);
+                await smokeHub.Clients.All.SendAsync("UpdateLastReceived", lastReceived);
                 await Task.Delay(TimeSpan.FromSeconds(1));
             }
         }

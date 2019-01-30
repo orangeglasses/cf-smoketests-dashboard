@@ -4,7 +4,7 @@ import Model exposing (..)
 import View
 import TestResult.Model as TestResults exposing (initialModel, testResultsDecoder)
 
-import Html exposing (program)
+import Browser
 import Json.Decode exposing (Decoder)
 import List.Extra exposing (getAt, updateAt)
 
@@ -81,9 +81,9 @@ testResultsUpdated model modelJson =
 
 -- MAIN
 
-main : Program Never Model.Model Model.Msg
+main : Program () Model.Model Model.Msg
 main =
-    program
+    Browser.element
         { init = Model.init
         , view = View.view
         , update = update

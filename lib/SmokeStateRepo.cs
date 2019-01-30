@@ -35,7 +35,7 @@ namespace SmokeTestsDashboardServer
                 currentSmokeHash = newSmokeHash;
 
                 // Push new smoke state to client via SignalR.
-                await smokeHub.Clients.All.InvokeAsync("UpdateTestResults", rawSmokeState);
+                await smokeHub.Clients.All.SendAsync("UpdateTestResults", rawSmokeState);
             }
 
             // Update last received.

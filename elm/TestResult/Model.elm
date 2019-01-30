@@ -1,7 +1,7 @@
 module TestResult.Model exposing (..)
 
-import Json.Decode exposing (Decoder, list, string, float, bool, nullable)
-import Json.Decode.Pipeline exposing (decode, required, optional)
+import Json.Decode as Decode exposing (Decoder, bool, string, list, nullable)
+import Json.Decode.Pipeline exposing (required, optional, hardcoded)
 
 
 
@@ -38,7 +38,7 @@ testResultsDecoder =
 
 testResultDecoder : Decoder TestResult
 testResultDecoder =
-    decode TestResult
+    Decode.succeed TestResult
         |> required "key" string
         |> required "result" bool
         |> required "name" string
@@ -46,7 +46,7 @@ testResultDecoder =
 
 subTestResultDecoder : Decoder SubTestResult
 subTestResultDecoder =
-    decode SubTestResult
+    Decode.succeed SubTestResult
         |> required "result" bool
         |> required "name" string
         |> optional "error" (nullable string) Nothing

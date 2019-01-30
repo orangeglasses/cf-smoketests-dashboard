@@ -2,33 +2,36 @@
 
 <head>
     <meta charset="utf-8" />
-    <script type="text/javascript" src="js/lib/signalr-client-1.0.0-alpha2-final.js"></script>
+    <script type="text/javascript" src="js/lib/signalr.min.js"></script>
 </head>
 
 <body>
     <div id="main"></div>
     <script type="text/javascript" src="js/main.js"></script>
     <script>
-        var node = document.getElementById('main');
-        var app = Elm.Main.embed(node);
+        var app = Elm.Main.init({
+            node: document.getElementById('main')
+        });
 
-        const logger = new signalR.ConsoleLogger(signalR.LogLevel.Information);
-        const smokeHub = new signalR.HttpConnection(`http://${document.location.host}/smoke`, { logger: logger });
-        const smokeConn = new signalR.HubConnection(smokeHub, logger);
+        const smokeConnection = new signalR.HubConnectionBuilder().withUrl("/smoke").build();
 
-        smokeConn.onClosed = e => {
+        smokeConnection.onClosed = e => {
             console.log('Connection closed');
         };
 
-        smokeConn.on('updateLastReceived', dateTime => {
+        smokeConnection.on('updateLastReceived', dateTime => {
             app.ports.lastReceiveds.send(dateTime);
         });
 
-        smokeConn.on('updateTestResults', testResults => {
+        smokeConnection.on('updateTestResults', testResults => {
+            console.log("updateTestResults");
+            console.log(testResults);
             app.ports.testResults.send(testResults);
         });
 
-        smokeConn.start().then(() => smokeConn.invoke('connect'));
+        smokeConnection.start().catch(function (err) {
+            return console.error(err.toString());
+        });
 
     </script>
 </body>

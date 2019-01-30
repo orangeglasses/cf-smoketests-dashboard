@@ -21,13 +21,13 @@ namespace SmokeTestsDashboardServer
             // Get current last received state and send to connecting client.
             var lastReceived = smokeStateRepo.LastReceived;
             var lastReceivedStatus = LastReceivedHostedService.GetLastReceived(lastReceived);
-            currentClient.InvokeAsync("UpdateLastReceived", lastReceived);
+            currentClient.SendAsync("UpdateLastReceived", lastReceived);
 
             // Get current smoke state and send to connecting client.
             var currentSmokeState = smokeStateRepo.CurrentSmokeState;
             if (currentSmokeState != null)
             {
-                currentClient.InvokeAsync("UpdateTestResults", currentSmokeState);
+                currentClient.SendAsync("UpdateTestResults", currentSmokeState);
             }
         }
     }
