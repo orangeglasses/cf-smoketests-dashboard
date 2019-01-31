@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background: url('smokey.jpg');
+    z-index: -1;
+}
+
+html,
+body {
+    font-family: sans-serif;
+    color: #00303E;
+}
+
+/* --- Branding --- */
+.itq-header {
+    display: flex;
+    height: 3rem;
+    background-color: #eee;
+    border-bottom: .15rem solid #ea4f35;
+    box-shadow: 0 3px 1rem #666;
+}
+
+.itq-header > .itq-logo {
+    flex: 0;
+    background-color: #fff;
+}
+
+.itq-header > .itq-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 1rem;
+    font-size: 1.5rem;
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+}
+
+.itq-link {
+    color: #ea4f35;
+    text-decoration: none;
+}
+
+/* --- Dashboard --- */
+.app > .header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+}
+
+.app .last-received-time {
+    background-color: rgba(255,255,255,.5);
+    padding: .5rem;
+    border-radius: .25rem;
+    box-shadow: 0 3px 1rem #666;
+}
+
+.app .tests {
+    margin: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    grid-gap: 2rem;
+}
+
+.app .test-container {
+    background-color: #eee;
+    padding: 1rem;
+    box-shadow: 0 3px 1rem #666;
+    border-radius: .25rem;
+}

@@ -3,10 +3,24 @@
 <head>
     <meta charset="utf-8" />
     <script type="text/javascript" src="js/lib/signalr.min.js"></script>
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
 
 <body>
+    <div class="backdrop"></div>
+    <header class="itq-header">
+        <img class="itq-logo" src="assets/itq-logo.svg" alt="ITQ Logo" />
+        <h1 class="itq-title">Smokestate</h1>
+    </header>
+
     <div id="main"></div>
+
+    <footer class="footer">
+        <a class="itq-link" href="https://www.itq.nl" target="_blank">itq</a>
+    </footer>
+
+
+
     <script type="text/javascript" src="js/main.js"></script>
     <script>
         var app = Elm.Main.init({
