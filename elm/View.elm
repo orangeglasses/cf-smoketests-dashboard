@@ -20,16 +20,22 @@ view model =
 
 lastReceivedTime : LastReceived -> Html Msg
 lastReceivedTime lastReceived =
-    span [ classList[("last-received-time", True)] ] [
-        text "Last state change was "
-        , text (Maybe.withDefault "? seconds" (lastReceived.diffText))
-        , text " ago"
-    ]
+    let
+        status = (Maybe.withDefault 100 (lastReceived.status))
+    in
+        div [ classList[ ("statusbar", True) ]] [
+            div [ classList[("system-state", True), ("state-warning", status > 50), ("state-critical", status > 75)]] [ ]
+            , div [ classList[("last-received-time", True)] ] [
+                text "Last state change was "
+                , text (Maybe.withDefault "? seconds" (lastReceived.diffText))
+                , text " ago"
+            ]
+        ]
 
 tests : List TestResults.Model -> Html Msg
 tests results =
     results
-        |> List.map (\r -> div [ classList [ ("test-container", True) ]] [ 
+        |> List.map (\r -> div [ classList [ ("test-container", True), ("failing", r.result.result /= True) ]] [ 
             h1 [ classList [ ("test-name", True) ] ] [ text r.result.name ] 
             , testOutput r.result.results
              ])
