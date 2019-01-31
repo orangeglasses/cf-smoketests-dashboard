@@ -23,7 +23,7 @@ view model =
 lastReceivedTime : LastReceived -> Html Msg
 lastReceivedTime lastReceived =
     span [ classList[("last-received-time", True)] ] [
-        text "Last updated "
+        text "Last state change was "
         , text (Maybe.withDefault "? seconds" (lastReceived.diffText))
         , text " ago"
     ]
