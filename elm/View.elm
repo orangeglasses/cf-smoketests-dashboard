@@ -1,9 +1,7 @@
 module View exposing (view)
 
-import AppStyles exposing (..)
 import Model exposing (..)
 import TestResult.Model as TestResults exposing (..)
-import TestResult.View as TestResults exposing (..)
 
 import Html exposing (Html, h1, div, span, text, header, section)
 import Html.Attributes exposing (classList)
