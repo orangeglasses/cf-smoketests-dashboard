@@ -1,7 +1,7 @@
 # Getting stuff up-and-running
 - [Install Elm 0.19](https://guide.elm-lang.org/install.html)
 - [Install .NET Core 2.2](https://dotnet.microsoft.com/download)
-- Run `elm make elm\AppStyles.elm elm\Main.elm elm\Model.elm elm\View.elm elm\TestResult\Model.elm elm\TestResult\View.elm --output wwwroot\js\main.js`
+- Run `elm make elm\Main.elm elm\Model.elm elm\View.elm elm\TestResult\Model.elm --output wwwroot\js\main.js`
 - Run `dotnet run` (or `dotnet watch run`)
 - Browse to [`localhost:5000`](http://localhost:5000)
 
