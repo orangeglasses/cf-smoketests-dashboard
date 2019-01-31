@@ -86,7 +86,8 @@ body {
 }
 
 .app .test-container.failing {
-    border: 2px solid red;
+    background-color: maroon;
+    color: #fff;
     animation: status-woopwoop .5s ease-out infinite;
 }
 

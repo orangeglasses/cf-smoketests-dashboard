@@ -26,7 +26,7 @@ lastReceivedTime lastReceived =
         div [ classList[ ("statusbar", True) ]] [
             div [ classList[("system-state", True), ("state-warning", status > 50), ("state-critical", status > 75)]] [ ]
             , div [ classList[("last-received-time", True)] ] [
-                text "Last state change was "
+                text "Last state update was "
                 , text (Maybe.withDefault "? seconds" (lastReceived.diffText))
                 , text " ago"
             ]
