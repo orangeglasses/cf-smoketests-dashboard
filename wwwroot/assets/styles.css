@@ -98,7 +98,7 @@ body {
     background-color: green;
     margin: 0 1rem;
     border-radius: .25rem;
-    /* box-shadow: 0 3px 1rem #666; */
+    box-shadow: 0 3px 1rem #666;
     z-index: 10;
 }
 
@@ -114,24 +114,24 @@ body {
 
 @keyframes status-woop {
     0% {
-        box-shadow: 0 0 0 0 rgba(255, 166, 0, .75);
+        box-shadow:0 3px 1rem #666, 0 0 0 0 rgba(255, 166, 0, .75);
     }
     70% {
-        box-shadow: 0 0 0 20px rgba(255, 166, 0, 0);
+        box-shadow:0 3px 1rem #666, 0 0 0 20px rgba(255, 166, 0, 0);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(255, 166, 0, 0);
+        box-shadow:0 3px 1rem #666, 0 0 0 0 rgba(255, 166, 0, 0);
     }
 }
 
 @keyframes status-woopwoop {
     0% {
-        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.75);
+        box-shadow:0 3px 1rem #666, 0 0 0 0 rgba(255, 0, 0, 0.75);
     }
     70% {
-        box-shadow: 0 0 0 40px rgba(255, 0, 0, 0);
+        box-shadow:0 3px 1rem #666, 0 0 0 40px rgba(255, 0, 0, 0);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+        box-shadow:0 3px 1rem #666, 0 0 0 0 rgba(255, 0, 0, 0);
     }
 }
