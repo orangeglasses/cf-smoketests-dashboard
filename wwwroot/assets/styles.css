@@ -104,7 +104,7 @@ body {
 
 .app .statusbar .system-state.state-warning {
     background-color: orange;
-    animation: status-woop .5s ease-out infinite;
+    animation: status-woop 1s ease-out infinite;
 }
 
 .app .statusbar .system-state.state-warning.state-critical {
