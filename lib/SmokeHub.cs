@@ -11,9 +11,10 @@ namespace SmokeTestsDashboardServer
         public SmokeHub(SmokeStateRepo smokeStateRepo)
         {
             this.smokeStateRepo = smokeStateRepo;
+
         }
 
-        public void Connect()
+        public override async Task OnConnectedAsync()
         {
             var connId = this.Context.ConnectionId;
             var currentClient = this.Clients.Client(connId);
@@ -21,14 +22,17 @@ namespace SmokeTestsDashboardServer
             // Get current last received state and send to connecting client.
             var lastReceived = smokeStateRepo.LastReceived;
             var lastReceivedStatus = LastReceivedHostedService.GetLastReceived(lastReceived);
-            currentClient.SendAsync("UpdateLastReceived", lastReceived);
+            
+            await currentClient.SendAsync("UpdateLastReceived", lastReceived);
 
             // Get current smoke state and send to connecting client.
             var currentSmokeState = smokeStateRepo.CurrentSmokeState;
             if (currentSmokeState != null)
             {
-                currentClient.SendAsync("UpdateTestResults", currentSmokeState);
+                await currentClient.SendAsync("UpdateTestResults", currentSmokeState);
             }
+
+            await base.OnConnectedAsync();
         }
     }
 }
