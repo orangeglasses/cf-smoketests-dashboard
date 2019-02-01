@@ -91,6 +91,42 @@ body {
     animation: status-woopwoop .5s ease-out infinite;
 }
 
+.test-result > .result-name {
+    margin: .25rem 0;
+}
+
+.test-container > .test-name::before,
+.test-container > .test-name.failing::before {
+    padding-right: .5rem;
+}
+
+.test-container > .test-name::before {
+    content: "✔️"
+}
+
+.test-container > .test-name.failing::before {
+    content: "❌"
+}
+
+.test-result > .result-name::before,
+.test-result > .result-name.has-error::before {
+    padding-right: .5rem;
+    line-height: 1rem;
+}
+
+.test-result > .result-name::before {
+    content: "👍";
+}
+
+.test-result > .result-name.has-error::before {
+    content: "👎";
+}
+
+.test-result > .result-error {
+    margin-left: 1.75rem;
+    font-size: .75rem;
+}
+
 /* --- warning light on the status bar --- */
 .app .statusbar .system-state {
     width: 2.2rem;

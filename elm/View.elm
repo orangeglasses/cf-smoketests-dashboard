@@ -36,7 +36,7 @@ tests : List TestResults.Model -> Html Msg
 tests results =
     results
         |> List.map (\r -> div [ classList [ ("test-container", True), ("failing", r.result.result /= True) ]] [ 
-            h1 [ classList [ ("test-name", True) ] ] [ text r.result.name ] 
+            h1 [ classList [ ("test-name", True), ("failing", r.result.result /= True) ] ] [ text r.result.name ] 
             , testOutput r.result.results
              ])
         |> section [ classList [("tests", True)]]
@@ -45,8 +45,8 @@ testOutput : List SubTestResult -> Html Msg
 testOutput testResults =
     testResults
         |> List.map (\tr -> div [ classList [ ("test-result", True) ]] [ 
-            div [ classList [ ("result-name", True)] ] [ text tr.name ]
-            , div [ classList [ ("has-error", tr.error /= Nothing), ("result-error", True)] ] [ 
+            div [ classList [ ("result-name", True), ("has-error", tr.result /= True)] ] [ text tr.name ]
+            , div [ classList [ ("result-error", True)] ] [ 
                 text (Maybe.withDefault "" (tr.error))
                 ]
             ])
