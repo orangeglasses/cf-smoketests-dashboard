@@ -1,7 +1,20 @@
+---
 applications:
-- name: smokeTestsDashboard
-  instances: 1
-  memory: 128M
-  disk: 512M
-  stack: cflinuxfs2
-  buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack.git
+  - name: itq-smoketest-dashboard
+    path: ./dashboard
+    buildpacks:
+      - dotnet_core_buildpack
+    memory: 128M
+    env:
+      ASPNETCORE_ENVIRONMENT: Release
+    routes:
+      - route: itq-smoketest-dashboard.cfapps.io
+  - name: itq-smoketest-canary
+    path: ./canary
+    buildpacks:
+      - dotnet_core_buildpack
+    memory: 128M
+    no-route: true
+    health-check-type: process
+    env:
+      DashboardSmokeStateEndpoint: https://itq-smoketest-dashboard.cfapps.io
