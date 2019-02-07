@@ -43,12 +43,6 @@ body {
     font-size: 1.5rem;
 }
 
-.footer {
-    display: flex;
-    justify-content: flex-end;
-    padding: 1rem;
-}
-
 .itq-link {
     color: #ea4f35;
     text-decoration: none;
