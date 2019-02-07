@@ -1,0 +1,173 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background: url('smokey.jpg'); /* Photo by rawpixel on Unsplash https://unsplash.com/photos/1Z15APktAiY */
+    z-index: -1;
+}
+
+html,
+body {
+    font-family: sans-serif;
+    color: #00303E;
+}
+
+/* --- Branding --- */
+.itq-header {
+    display: flex;
+    height: 3rem;
+    background-color: #eee;
+    border-bottom: .15rem solid #ea4f35;
+    box-shadow: 0 3px 1rem #666;
+}
+
+.itq-header > .itq-logo {
+    flex: 0;
+    background-color: #fff;
+}
+
+.itq-header > .itq-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 1rem;
+    font-size: 1.5rem;
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+}
+
+.itq-link {
+    color: #ea4f35;
+    text-decoration: none;
+}
+
+/* --- Dashboard --- */
+.app > .header {
+    padding: 1rem;
+}
+
+.app .statusbar {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.app .last-received-time {
+    background-color: rgba(255,255,255,.5);
+    padding: .5rem;
+    border-radius: .25rem;
+    box-shadow: 0 3px 1rem #666;
+}
+
+.app .tests {
+    margin: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    grid-gap: 2rem;
+}
+
+.app .test-container {
+    background-color: #eee;
+    padding: 1rem;
+    box-shadow: 0 3px 1rem #666;
+    border-radius: .25rem;
+}
+
+.app .test-container.failing {
+    background-color: maroon;
+    color: #fff;
+    animation: status-woopwoop .5s ease-out infinite;
+}
+
+.test-result > .result-name {
+    margin: .25rem 0;
+}
+
+.test-container > .test-name::before,
+.test-container > .test-name.failing::before {
+    padding-right: .5rem;
+}
+
+.test-container > .test-name::before {
+    content: "✔️"
+}
+
+.test-container > .test-name.failing::before {
+    content: "❌"
+}
+
+.test-result > .result-name::before,
+.test-result > .result-name.has-error::before {
+    padding-right: .5rem;
+    line-height: 1rem;
+}
+
+.test-result > .result-name::before {
+    content: "👍";
+}
+
+.test-result > .result-name.has-error::before {
+    content: "👎";
+}
+
+.test-result > .result-error {
+    margin-left: 1.75rem;
+    font-size: .75rem;
+}
+
+/* --- warning light on the status bar --- */
+.app .statusbar .system-state {
+    width: 2.2rem;
+    height: 2.2rem;
+    background-color: green;
+    margin: 0 1rem;
+    border-radius: .25rem;
+    box-shadow: 0 3px 1rem #666;
+    z-index: 10;
+}
+
+.app .statusbar .system-state.state-warning {
+    background-color: orange;
+    animation: status-woop 1s ease-out infinite;
+}
+
+.app .statusbar .system-state.state-warning.state-critical {
+    background-color: red;
+    animation: status-woopwoop .5s ease-out infinite;
+}
+
+@keyframes status-woop {
+    0% {
+        box-shadow:0 3px 1rem #666, 0 0 0 0 rgba(255, 166, 0, .75);
+    }
+    70% {
+        box-shadow:0 3px 1rem #666, 0 0 0 20px rgba(255, 166, 0, 0);
+    }
+    100% {
+        box-shadow:0 3px 1rem #666, 0 0 0 0 rgba(255, 166, 0, 0);
+    }
+}
+
+@keyframes status-woopwoop {
+    0% {
+        box-shadow:0 3px 1rem #666, 0 0 0 0 rgba(255, 0, 0, 0.75);
+    }
+    70% {
+        box-shadow:0 3px 1rem #666, 0 0 0 40px rgba(255, 0, 0, 0);
+    }
+    100% {
+        box-shadow:0 3px 1rem #666, 0 0 0 0 rgba(255, 0, 0, 0);
+    }
+}
