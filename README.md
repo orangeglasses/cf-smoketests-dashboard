@@ -95,6 +95,12 @@ There's a Powershell script included that can deploy a working system from this 
 
 ## **Please review the `manifest.yml` file before pushing to make sure everything is configured to your needs!!**
 
+# Notes about this project
+
+As you may have seen in the code, smoke state is kept in an in-memory dictionary. This poses challenges to scaling, the obvious solution would be to introduce a storage facility (Redis, etc.) to hold on to that state. We could add support for Redis and/or other databases but we don't want to introduce a dependency into our code that might not work for you, there's no garantees that whatever storage we pick is available in your platforms so for now, we'll leave it as is. This being a dashboard and does not have an interaction besides the websocket it receives from, the need for scaling is probably also very low.
+
+Adding support for storage is done by changing the `SmokeStateRepo.cs` class to store its data somewhere else.
+
 ###### Todo:
 
 - Elm buildpack for the front-end build step. Running push.ps1 to push to CF now relies on a local build step before running the `cf push` command.
