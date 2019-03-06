@@ -110,6 +110,17 @@ Watcher.jpg: Photo 'Big Brother is watching' by Michael Aleo (https://unsplash.c
     color: #ea4f35;
 }
 
+.--no-decoration {
+    text-decoration: none;
+}
+
 .text {
     margin-bottom: 1rem;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem;
+    font-size: .85rem;
 }
