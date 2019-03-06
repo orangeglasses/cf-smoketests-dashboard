@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
 
     <link rel="stylesheet" href="assets/styles.css">
 </head>
+
 <body>
     <div class="itq_logo"></div>
 
@@ -16,10 +18,30 @@
         <h2 class="subtitle">Keep an eye on your apps and services</h2>
     </section>
 
-    <section class="content_block">
-        <div class="content content--textsection">
-            <h3 class="content_title">Test</h3>
-        </div>
+    <section class="content_block content_block--textsection">
+        <h3 class="content_title">The dashboard</h3>
+
+        <p class="text">This dashboard gives you the ability to monnitor apps and services on your Cloud Foundry
+            platform. Test
+            clients can send their results to the
+            dashboard webserver where they will be pushed to the front-end.
+        </p>
+
+        <img class="image" src="assets/dashboard.png" alt="dashboard" />
+
+        <p class="text">
+            This project also includes a pipeline configuration that you can use to keep an eye on your platform. The
+            dashboard will notify you when it
+            is not receiving data from the back-end anymore, warning you of potential deployment failures elsewhere.
+        </p>
+        <p>Source for the dashboard and canary is available <a class="link" href="https://github.com/orangeglasses/cf-smoketests-dashboard">in this repo</a>.</p>
+        <h3 class="content_title">Canary</h3>
+        <p class="text">Use this little utility to run tests agains http endpoints. See the <a class="link" href="https://github.com/orangeglasses/cf-smoketests-dashboard/blob/master/README.md">project readme file</a> for more information.
+        </p>
+        <h3 class="content_title">CF-Smoketests</h3>
+        <p class="text">This project contains tests made for specific backing services. Use this to monitor the state of
+            services inside the platform.</p>
+        <p>Source for the tests can be found <a class="link" href="https://github.com/orangeglasses/cf-smoketests">in this repo</a>.</p>
     </section>
 
     <section class="content_block">
@@ -33,4 +55,5 @@
         </div>
     </section>
 </body>
+
 </html>

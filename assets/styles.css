@@ -61,7 +61,7 @@ Watcher.jpg: Photo 'Big Brother is watching' by Michael Aleo (https://unsplash.c
 
 .content_block > .content {
     height: 100%;
-    flex: 1 1 auto;
+    flex: 1 1 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,6 +72,7 @@ Watcher.jpg: Photo 'Big Brother is watching' by Michael Aleo (https://unsplash.c
 .content--blue {
     text-align: center;
     color: #fff;
+    padding: 2rem;
 }
 
 .content--blue {
@@ -82,13 +83,33 @@ Watcher.jpg: Photo 'Big Brother is watching' by Michael Aleo (https://unsplash.c
     background-color: #ea4f35;
 }
 
-.content--textsection {
-    max-width: 50rem;
-    text-align: right;
+.content_block--textsection {
+    max-width: 40rem;
+    text-align: left;
+    margin: 0 auto;
+    display: block;
+    padding: 2rem;
+    height: auto;
 }
 
 .content_title {
+    text-align: left;
     color: currentColor;
     font-size: 2rem;
+    margin: 2rem 0 1rem 0;
+}
+
+.image {
+    max-width: 80%;
+    box-shadow: 0 0 15px #777;
+    margin: 1rem auto;
+    display: block;
+}
+
+.link {
+    color: #ea4f35;
+}
+
+.text {
     margin-bottom: 1rem;
 }
