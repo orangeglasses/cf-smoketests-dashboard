@@ -1,0 +1,94 @@
+/*
+
+Watcher.jpg: Photo 'Big Brother is watching' by Michael Aleo (https://unsplash.com/@mjaleo) on Unsplash.
+
+*/
+
+.___colors {
+    color: #fff;
+    color: #003745;
+    color: #000;
+    color: #ea4f35;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #003745;
+}
+
+.itq_logo {
+    width: 6rem;
+    height: 6rem;
+    background: url(itq-logo.svg) center center no-repeat #fff;
+    background-size: contain;
+    position: fixed;
+    background-size: 200%;
+}
+
+.title_block {
+    height: 40rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title_block > .title,
+.title_block > .subtitle {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 5px #000, 0 0 7px #000;
+    text-align: center;
+}
+
+.title_block > .subtitle {
+    font-size: 2rem;
+}
+
+.title_block--watcher {
+    background: url(watcher.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+.content_block {
+    height: 20rem;
+    display: flex;
+}
+
+.content_block > .content {
+    height: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content--orange,
+.content--blue {
+    text-align: center;
+    color: #fff;
+}
+
+.content--blue {
+    background-color: #003745;
+}
+
+.content--orange {
+    background-color: #ea4f35;
+}
+
+.content--textsection {
+    max-width: 50rem;
+    text-align: right;
+}
+
+.content_title {
+    color: currentColor;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
