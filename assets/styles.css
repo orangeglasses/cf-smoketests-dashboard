@@ -26,6 +26,7 @@ Watcher.jpg: Photo 'Big Brother is watching' by Michael Aleo (https://unsplash.c
     background-size: contain;
     position: fixed;
     background-size: 200%;
+    box-shadow: 0 0 10px #999;
 }
 
 .title_block {
@@ -101,7 +102,7 @@ Watcher.jpg: Photo 'Big Brother is watching' by Michael Aleo (https://unsplash.c
 
 .image {
     max-width: 80%;
-    box-shadow: 0 0 15px #777;
+    box-shadow: 0 0 15px #999;
     margin: 1rem auto;
     display: block;
 }
