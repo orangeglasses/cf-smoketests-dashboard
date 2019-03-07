@@ -22,7 +22,7 @@
     <section class="content_block content_block--textsection">
         <h3 class="content_title">The dashboard</h3>
 
-        <p class="text">This dashboard gives you the ability to monnitor apps and services on your Cloud Foundry
+        <p class="text">This dashboard gives you the ability to monitor apps and services on your Cloud Foundry
             platform. Test
             clients can send their results to the
             dashboard webserver where they will be pushed to the front-end.
@@ -35,14 +35,32 @@
             dashboard will notify you when it
             is not receiving data from the back-end anymore, warning you of potential deployment failures elsewhere.
         </p>
-        <p>Source for the dashboard and canary is available <a class="link" href="https://github.com/orangeglasses/cf-smoketests-dashboard" title="Dashboard repo">in this repo</a>.</p>
+        <p>Source for the dashboard and canary is available <a class="link"
+                href="https://github.com/orangeglasses/cf-smoketests-dashboard" title="Dashboard repo">in this repo</a>.
+        </p>
         <h3 class="content_title">Canary</h3>
-        <p class="text">Use this little utility to run tests agains http endpoints. See the <a class="link" href="https://github.com/orangeglasses/cf-smoketests-dashboard/blob/master/README.md" title="Dashboard readme file">project readme file</a> for more information.
+        <p class="text">Use this little utility to run tests agains http endpoints. See the <a class="link"
+                href="https://github.com/orangeglasses/cf-smoketests-dashboard/blob/master/README.md"
+                title="Dashboard readme file">project readme file</a> for more information.
         </p>
         <h3 class="content_title">CF-Smoketests</h3>
         <p class="text">This project contains tests made for specific backing services. Use this to monitor the state of
             services inside the platform.</p>
-        <p>Source for the tests can be found <a class="link" href="https://github.com/orangeglasses/cf-smoketests" title="CF-Smoketest repository">in this repo</a>.</p>
+        <p>Source for the tests can be found <a class="link" href="https://github.com/orangeglasses/cf-smoketests"
+                title="CF-Smoketest repository">in this repo</a>.</p>
+    </section>
+
+    <section class="content_block--textsection">
+        <h3 class="content_title">Quickstart</h3>
+        <p>
+            There are two ways to get rolling quickly.
+        </p>
+        <h4 class="content_subtitle">Pushing it yourself</h4>
+        <p>The source includes a powershell script (<code class="code">push.ps1</code>) that you can run against your own Cloud Foundy platform. Make sure you
+            check the manifest before running. The canary client is optional but you might want to enable it if you want
+            have a look at a working dashboard. See the readme file for more details.</p>
+        <h4 class="content_subtitle">Pipelining</h4>
+        <p>The other option is running the included pipeline. See the included <code class="code">CI</code> for all the bits and pieces.</p>
     </section>
 
     <section class="content_block">
@@ -59,7 +77,9 @@
     <section class="content_block content_block--textsection">
         <h3 class="content_title">Get in touch with us</h3>
         <p class="text">
-            Have a any feedback or comments? You can <a class="link" href="https://github.com/orangeglasses/cf-smoketests-dashboard/issues">create an issue</a> right here on github or reach out to <a class="link" href="https://www.twitter.com/itq">@ITQ</a> on Twitter.
+            Have a any feedback or comments? You can <a class="link"
+                href="https://github.com/orangeglasses/cf-smoketests-dashboard/issues">create an issue</a> right here on
+            github or reach out to <a class="link" href="https://www.twitter.com/itq">@ITQ</a> on Twitter.
         </p>
     </section>
 

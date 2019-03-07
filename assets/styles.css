@@ -93,11 +93,16 @@ Watcher.jpg: Photo 'Big Brother is watching' by Michael Aleo (https://unsplash.c
     height: auto;
 }
 
-.content_title {
+.content_title,
+.content_subtitle {
     text-align: left;
     color: currentColor;
     font-size: 2rem;
     margin: 2rem 0 1rem 0;
+}
+
+.content_subtitle {
+    font-size: 1.5rem;
 }
 
 .image {
@@ -124,4 +129,8 @@ Watcher.jpg: Photo 'Big Brother is watching' by Michael Aleo (https://unsplash.c
     justify-content: space-between;
     padding: .5rem;
     font-size: .85rem;
+}
+
+.code {
+    font-family: 'Courier New', Courier, monospace;
 }
