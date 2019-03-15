@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ITQ Smoketester dashboard</title>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 
@@ -17,6 +19,25 @@
         <!-- Photo 'Big Brother is watching' by Michael Aleo (https://unsplash.com/@mjaleo) on Unsplash. -->
         <h1 class="title">Smoketester dashboard</h1>
         <h2 class="subtitle">Keep an eye on your apps and services</h2>
+    </section>
+
+    <section class="content_block">
+        <div class="icon-grid">
+            <div class="icon-cell">
+                <i class="fas fa-columns"></i>
+                <p class="text">Keep track of all your running services and apps in one place.</p>
+            </div>
+
+            <div class="icon-cell">
+                <i class="fas fa-server"></i>
+                <p class="text">Use cf-smoketests to get notified about problems in your backing services.</p>
+            </div>
+
+            <div class="icon-cell">
+                <i class="fas fa-crow"></i>
+                <p class="text">Run additional custom tests using the canary test client.</p>
+            </div>
+        </div>
     </section>
 
     <section class="content_block content_block--textsection">
@@ -35,9 +56,11 @@
             dashboard will notify you when it
             is not receiving data from the back-end anymore, warning you of potential deployment failures elsewhere.
         </p>
-        <p>Source for the dashboard and canary is available <a class="link"
-                href="https://github.com/orangeglasses/cf-smoketests-dashboard" title="Dashboard repo">in this repo</a>.
+
+        <p class="text">Source for the dashboard and canary is available <a class="link"
+            href="https://github.com/orangeglasses/cf-smoketests-dashboard" title="Dashboard repo">in this repo</a>.
         </p>
+
         <h3 class="content_title">Canary</h3>
         <p class="text">Use this little utility to run tests agains http endpoints. See the <a class="link"
                 href="https://github.com/orangeglasses/cf-smoketests-dashboard/blob/master/README.md"
@@ -50,17 +73,19 @@
                 title="CF-Smoketest repository">in this repo</a>.</p>
     </section>
 
-    <section class="content_block--textsection">
+    <section class="content_block content_block--textsection">
         <h3 class="content_title">Quickstart</h3>
         <p>
             There are two ways to get rolling quickly.
         </p>
         <h4 class="content_subtitle">Pushing it yourself</h4>
-        <p>The source includes a powershell script (<code class="code">push.ps1</code>) that you can run against your own Cloud Foundy platform. Make sure you
+        <p>The source includes a powershell script (<code class="code">push.ps1</code>) that you can run against your
+            own Cloud Foundy platform. Make sure you
             check the manifest before running. The canary client is optional but you might want to enable it if you want
             have a look at a working dashboard. See the readme file for more details.</p>
         <h4 class="content_subtitle">Pipelining</h4>
-        <p>The other option is running the included pipeline. See the included <code class="code">CI</code> folder for all the bits and pieces.</p>
+        <p>The other option is running the included pipeline. See the included <code class="code">CI</code> folder for
+            all the bits and pieces.</p>
     </section>
 
     <section class="content_block">
@@ -69,7 +94,7 @@
             Monitor apps using a configurable client that updates the status on the dashboard.
         </div>
         <div class="content content--orange">
-            <h3 class="content_title">CF-Smoketests</h3>
+            <h3 class="content_title">CF Smoketests</h3>
             Monitor backingservices using a purpose built client that connects to services powering your apps.
         </div>
     </section>
@@ -85,6 +110,7 @@
 
     <footer class="footer">
         <a class="link --no-decoration" href="https://www.itq.nl" title="ITQ Website">itq.nl</a>
+        <span>© 2019 itq</span>
         <a class="link --no-decoration" href="https://www.twitter.com/itq" title="ITQ Twitter profile">@ITQ</a>
     </footer>
 </body>

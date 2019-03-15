@@ -56,16 +56,14 @@ Watcher.jpg: Photo 'Big Brother is watching' by Michael Aleo (https://unsplash.c
 }
 
 .content_block {
-    height: 20rem;
     display: flex;
+    max-width: 60rem;
+    margin: 0 auto;
 }
 
 .content_block > .content {
-    height: 100%;
     flex: 1 1 50%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 
@@ -74,6 +72,11 @@ Watcher.jpg: Photo 'Big Brother is watching' by Michael Aleo (https://unsplash.c
     text-align: center;
     color: #fff;
     padding: 2rem;
+}
+
+.content--orange > .content_title,
+.content--blue > .content_title {
+    text-align: center;
 }
 
 .content--blue {
@@ -85,9 +88,7 @@ Watcher.jpg: Photo 'Big Brother is watching' by Michael Aleo (https://unsplash.c
 }
 
 .content_block--textsection {
-    max-width: 40rem;
     text-align: left;
-    margin: 0 auto;
     display: block;
     padding: 2rem;
     height: auto;
@@ -99,6 +100,7 @@ Watcher.jpg: Photo 'Big Brother is watching' by Michael Aleo (https://unsplash.c
     color: currentColor;
     font-size: 2rem;
     margin: 2rem 0 1rem 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .content_subtitle {
@@ -108,7 +110,7 @@ Watcher.jpg: Photo 'Big Brother is watching' by Michael Aleo (https://unsplash.c
 .image {
     max-width: 80%;
     box-shadow: 0 0 15px #999;
-    margin: 1rem auto;
+    margin: 2rem auto;
     display: block;
 }
 
@@ -129,8 +131,60 @@ Watcher.jpg: Photo 'Big Brother is watching' by Michael Aleo (https://unsplash.c
     justify-content: space-between;
     padding: .5rem;
     font-size: .85rem;
+    color: #ea4f35;
 }
 
 .code {
     font-family: 'Courier New', Courier, monospace;
+}
+
+.icon-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2rem;
+}
+
+.icon-cell {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 0 1rem;
+    margin-top: 2rem;
+}
+
+.icon-cell > .fas {
+    color: #ea4f35;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 700px) {
+    .itq_logo {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .title_block {
+        height: 20rem;
+    }
+
+    .title_block > .title,
+    .title_block > .subtitle {
+        font-size: 2.5rem;
+    }
+
+    .title_block > .subtitle {
+        font-size: 1.25rem;
+    }
+
+    .icon-grid {
+        display: block;
+    }
+
+    .icon-cell > .text {
+        font-size: 1rem;
+    }
+
+    .icon-cell > .fas {
+        font-size: 2rem;
+    }
 }
