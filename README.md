@@ -6,8 +6,8 @@ The repo contains all the source for a dashboard and smoketesting client.
 
 ### Getting the dashboard up and running:
 - [Install Elm 0.19](https://guide.elm-lang.org/install.html)
-- [Install .NET Core 2.2](https://dotnet.microsoft.com/download)
-- Run `elm make elm\Main.elm elm\Model.elm elm\View.elm elm\TestResult\Model.elm --output wwwroot\js\main.js`
+- [Install .NET Core 3.1](https://dotnet.microsoft.com/download)
+- Run `elm make elm\Main.elm --output wwwroot\js\main.js`
 - Run `dotnet run` (or `dotnet watch run`)
 - Browse to [`localhost:5000`](http://localhost:5000)
 
