@@ -15,13 +15,18 @@ export default function trackTestResults(smokeTestConnection) {
 
 function parseResults(tests) {
     tests.forEach(test => {
-        const indicatorId = `result_${test.key}`;
+        try {
+            const indicatorId = `result_${test.key}`;
+            console.log(indicatorId);
 
-        const existingIndicator = document.getElementById(indicatorId);
-        if (existingIndicator) {
-            removeExistingIndicator(existingIndicator);
+            const existingIndicator = document.getElementById(indicatorId);
+            if (existingIndicator) {
+                removeExistingIndicator(existingIndicator);
+            }
+
+            createTestResultIndicator(test, indicatorId);
+        } catch (error) {
+            console.error(error);
         }
-
-        createTestResultIndicator(test, indicatorId);
     });
 }
