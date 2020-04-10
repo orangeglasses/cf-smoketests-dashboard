@@ -17,9 +17,8 @@ function parseResults(tests) {
     tests.forEach(test => {
         try {
             const indicatorId = `result_${test.key}`;
-            console.log(indicatorId);
-
             const existingIndicator = document.getElementById(indicatorId);
+
             if (existingIndicator) {
                 removeExistingIndicator(existingIndicator);
             }
