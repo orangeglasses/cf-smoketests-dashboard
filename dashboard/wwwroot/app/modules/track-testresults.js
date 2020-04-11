@@ -1,4 +1,4 @@
-import removeExistingIndicator from "./remove-indicator.js";
+import removeExistingIndicators from "./remove-indicators.js";
 import createTestResultIndicator from "./create-indicator.js";
 
 let tracking = false;
@@ -14,15 +14,11 @@ export default function trackTestResults(smokeTestConnection) {
 }
 
 function parseResults(tests) {
+    removeExistingIndicators();
+
     tests.forEach(test => {
         try {
             const indicatorId = `result_${test.key}`;
-            const existingIndicator = document.getElementById(indicatorId);
-
-            if (existingIndicator) {
-                removeExistingIndicator(existingIndicator);
-            }
-
             createTestResultIndicator(test, indicatorId);
         } catch (error) {
             console.error(error);
