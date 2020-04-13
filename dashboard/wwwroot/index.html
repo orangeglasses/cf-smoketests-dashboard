@@ -2,46 +2,18 @@
 
 <head>
     <meta charset="utf-8" />
-    <script type="text/javascript" src="js/lib/signalr.min.js"></script>
-    <link rel="stylesheet" href="assets/styles.css">
+    <script type="text/javascript" src="js/signalr/dist/browser/signalr.min.js"></script>
+    <script src="app/main.js" type="module"></script>
+    <link rel="stylesheet" href="styles/dashboard.css">
 </head>
 
 <body>
     <div class="backdrop"></div>
-    <header class="itq-header">
-        <img class="itq-logo" src="assets/itq-logo.svg" alt="ITQ Logo" />
-        <h1 class="itq-title">Smokestate</h1>
+    <header class="row space-between centered padded default-bg bd-b bd-accent">
+        <h1 class="ft-big">System overview</h1>
+        <p class="right-aligned ft-small"><span id="lastReceivedDiff"></span></p>
     </header>
-
-    <div id="main"></div>
-
-    <script type="text/javascript" src="js/main.js"></script>
-    <script>
-        var app = Elm.Main.init({
-            node: document.getElementById('main')
-        });
-
-        const smokeConnection = new signalR.HubConnectionBuilder().withUrl("/smoke").build();
-
-        smokeConnection.onClosed = e => {
-            console.log('Connection closed');
-        };
-
-        smokeConnection.on('updateLastReceived', dateTime => {
-            app.ports.lastReceiveds.send(dateTime);
-        });
-
-        smokeConnection.on('updateTestResults', testResults => {
-            console.log("updateTestResults");
-            console.log(testResults);
-            app.ports.testResults.send(testResults);
-        });
-
-        smokeConnection.start().catch(function (err) {
-            return console.error(err.toString());
-        });
-
-    </script>
+    <main id="resultContainer" class="grid padded"></main>
 </body>
 
 </html>

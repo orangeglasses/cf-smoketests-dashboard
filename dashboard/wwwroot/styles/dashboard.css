@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --main-accent-color: #00449e;
+    --main-bg-color: #f7f7f7;
+    --main-color: #111;
+
+    --default-spacing: 30px;
+
+    --ok-color: #19a974;
+    --fail-color: #e7040f;
+
+    --default-rounding: 10px;
+}
+
+.row {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.centered{
+    align-items: center;
+}
+
+.right-aligned {
+    text-align: right;
+}
+
+.padded {
+    padding: var(--default-spacing);
+}
+
+.rounded {
+    border-radius: var(--default-rounding);
+}
+
+.bd {
+    border-width: 2px;
+    border-style: solid;
+}
+
+.bd-b {
+    border-width: 0;
+    border-bottom-width: 2px;
+    border-style: solid;
+}
+
+.bd-accent {
+    border-color: var(--main-accent-color);
+}
+
+.bd-ok {
+    border-color: var(--ok-color);
+}
+
+.bd-fail {
+    border-color: var(--fail-color);
+}
+
+.default-bg {
+    background-color: var(--main-bg-color);
+}
+
+.ft-big {
+    font-size: 1.5rem;
+}
+
+.ft-normal {
+    font-size: 1rem;
+}
+
+.ft-small {
+    font-size: .85rem;
+}
+
+.color-ok {
+    color: var(--ok-color);
+}
+
+.color-warn {
+    font-weight: bold;
+    color: var(--main-accent-color);
+}
+
+.color-critical {
+    font-weight: bold;
+    color: var(--fail-color);
+}
+
+.grid {
+    display: grid;
+    width: 100%;
+    grid-column-gap: var(--default-spacing);
+    grid-row-gap: var(--default-spacing);
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+}
+
+/* -- One-offs. classes -- */
+ul {
+    list-style-position: inside;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-image: url('../assets/smokey.jpg');
+    background-size: cover;
+}
+
+/* -- animations -- */
+.wooping {
+    animation: woopwoop .5s ease-out infinite;
+}
+
+@keyframes woopwoop {
+    0% {
+        box-shadow:0 3px 1rem #666, 0 0 0 0 rgba(255, 0, 0, 0.75);
+    }
+    70% {
+        box-shadow:0 3px 1rem #666, 0 0 0 40px rgba(255, 0, 0, 0);
+    }
+    100% {
+        box-shadow:0 3px 1rem #666, 0 0 0 0 rgba(255, 0, 0, 0);
+    }
+}
