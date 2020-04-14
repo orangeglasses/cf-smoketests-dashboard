@@ -6,12 +6,19 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+html,
+body {
+    background-color: #313131;
+    color: #f7f7f7;
+}
+
 :root {
-    --main-accent-color: #00449e;
-    --main-bg-color: #f7f7f7;
-    --main-color: #111;
+    --main-accent-color: #ca3e47;
+    --main-bg-color: #525252;
+    --main-color: #f7f7f7;
 
     --default-spacing: 30px;
+    --narrow-spacing: 10px;
 
     --ok-color: #19a974;
     --fail-color: #e7040f;
@@ -35,8 +42,16 @@
     text-align: right;
 }
 
+.padded-narrow {
+    padding: var(--narrow-spacing);
+}
+
 .padded {
     padding: var(--default-spacing);
+}
+
+.padded-wh {
+    padding: var(--narrow-spacing) var(--default-spacing);
 }
 
 .rounded {
@@ -106,18 +121,13 @@
 
 /* -- One-offs. classes -- */
 ul {
-    list-style-position: inside;
+    list-style-type: none;
+    padding-top: var(--narrow-spacing);
 }
 
-.backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    background-image: url('../assets/smokey.jpg');
-    background-size: cover;
+.logo {
+    width: 25px;
+    margin-right: var(--narrow-spacing);
 }
 
 /* -- animations -- */
@@ -127,12 +137,12 @@ ul {
 
 @keyframes woopwoop {
     0% {
-        box-shadow:0 3px 1rem #666, 0 0 0 0 rgba(255, 0, 0, 0.75);
+        box-shadow:0 3px 1rem #ca3e47, 0 0 0 0 rgba(255, 0, 0, 0.75);
     }
     70% {
-        box-shadow:0 3px 1rem #666, 0 0 0 40px rgba(255, 0, 0, 0);
+        box-shadow:0 3px 1rem #ca3e47, 0 0 0 40px rgba(255, 0, 0, 0);
     }
     100% {
-        box-shadow:0 3px 1rem #666, 0 0 0 0 rgba(255, 0, 0, 0);
+        box-shadow:0 3px 1rem #ca3e47, 0 0 0 0 rgba(255, 0, 0, 0);
     }
 }
