@@ -5,7 +5,7 @@ const resultContainer = document.getElementById("resultContainer");
 export default function createTestResultIndicator(test, indicatorId) {
     const indicator = createIndicator(test, indicatorId);
 
-    if (test.results) {
+    if (!test.result && test.results) {
         const details = createResultDetails(test.results);
         indicator.appendChild(details);
     }
@@ -20,7 +20,7 @@ function createIndicator(test, id) {
     indicator.classList.add("bd", "default-bg", "padded", "ft-normal", "rounded");
 
     if (test.result) {
-        indicator.classList.add("bd-ok")
+        indicator.classList.add("bd-ok");
     } else {
         indicator.classList.add("bd-fail", "wooping");
     }
