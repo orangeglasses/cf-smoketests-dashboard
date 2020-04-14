@@ -22,6 +22,6 @@ function updateLastReceivedInfo(timeInfo) {
     } else if (status > 75) {
         diffText.classList.add("color-critical", "wooping");
     } else {
-        diffText.classList.add("color-ok");
+        // No special color for below 50.
     }
 }
