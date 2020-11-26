@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace SmokeTestsDashboardServer
+namespace MetricDashboard
 {
     public class Program
     {

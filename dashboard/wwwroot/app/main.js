@@ -1,10 +1,8 @@
-import trackDataLastReceivedDate from "./modules/track-last-received-state.js";
-import trackTestResults from "./modules/track-testresults.js";
+import trackMetrics from "./modules/track-metrics.js";
 
-const smokeConnection = new signalR.HubConnectionBuilder().withUrl("/smoke").build();
+const smokeConnection = new signalR.HubConnectionBuilder().withUrl("/metrics").build();
 
-trackDataLastReceivedDate(smokeConnection);
-trackTestResults(smokeConnection)
+trackMetrics(smokeConnection)
 
 smokeConnection.onClosed = e => {
     console.warn('Connection closed');

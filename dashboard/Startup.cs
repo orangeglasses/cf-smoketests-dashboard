@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using HostingExtensions = Microsoft.Extensions.Hosting;
 
-namespace SmokeTestsDashboardServer
+namespace MetricDashboard
 {
     public class Startup
     {
@@ -12,12 +11,11 @@ namespace SmokeTestsDashboardServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSignalR();
-            services.AddSingleton<HostingExtensions.IHostedService, LastReceivedHostedService>();
             services.AddMvc(options =>
             {
                 options.InputFormatters.Add(new TextPlainInputFormatter());
             });
-            services.AddSingleton<SmokeStateRepo>();
+            services.AddSingleton<MetricsRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -26,9 +24,10 @@ namespace SmokeTestsDashboardServer
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseRouting();
-            app.UseEndpoints(endpoints => {
+            app.UseEndpoints(endpoints =>
+            {
                 endpoints.MapControllers();
-                endpoints.MapHub<SmokeHub>("/smoke");
+                endpoints.MapHub<MetricsHub>("/metrics");
             });
         }
     }
