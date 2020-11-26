@@ -1,4 +1,4 @@
-export default function removeExistingIndicators() {
+export default function clearNodes() {
     try {
         const container = document.getElementById("resultContainer");
         while (container.firstChild) {
