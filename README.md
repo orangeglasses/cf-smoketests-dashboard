@@ -13,3 +13,9 @@ The repo contains all the source for a dashboard and smoketesting client.
 - Have .NET Core installed
 - Add any tests you might want to run to the appsettings.json
 - Run `dotnet run`
+
+## Testing the dashboard
+
+You can submit testdata using the following `curl` command while the dashboard webserver is running:
+
+    curl -X POST -H "Content-Type: application/json" -d '{"node":"test-node", "fpsvalue": 100}' localhost:5000/api/metrics
