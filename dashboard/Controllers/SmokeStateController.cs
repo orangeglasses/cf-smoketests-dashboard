@@ -5,7 +5,7 @@ using cf_smoketests_dashboard.lib.models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
-namespace SmokeTestsDashboardServer.Controllers
+namespace MetricDashboard.Controllers
 {
     [Route("api/[controller]")]
     public class SmokeStateController : Controller

@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 
-namespace SmokeTestsDashboardServer
+namespace MetricDashboard
 {
     public class SmokeHub : Hub
     {
@@ -22,7 +22,7 @@ namespace SmokeTestsDashboardServer
             // Get current last received state and send to connecting client.
             var lastReceived = smokeStateRepo.LastReceived;
             var lastReceivedStatus = LastReceivedHostedService.GetLastReceived(lastReceived);
-            
+
             await currentClient.SendAsync("UpdateLastReceived", lastReceived);
 
             // Get current smoke state and send to connecting client.

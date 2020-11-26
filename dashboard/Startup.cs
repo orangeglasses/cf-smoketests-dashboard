@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using HostingExtensions = Microsoft.Extensions.Hosting;
 
-namespace SmokeTestsDashboardServer
+namespace MetricDashboard
 {
     public class Startup
     {
@@ -26,7 +26,8 @@ namespace SmokeTestsDashboardServer
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseRouting();
-            app.UseEndpoints(endpoints => {
+            app.UseEndpoints(endpoints =>
+            {
                 endpoints.MapControllers();
                 endpoints.MapHub<SmokeHub>("/smoke");
             });

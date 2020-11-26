@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Hosting;
 
-namespace SmokeTestsDashboardServer
+namespace MetricDashboard
 {
     public class LastReceived
     {

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace SmokeTestsDashboardServer
+namespace MetricDashboard
 {
     public class SmokeStateRepo
     {
@@ -26,9 +26,9 @@ namespace SmokeTestsDashboardServer
 
         internal async Task SetRawSmokeStateAsync(SmokeTest[] rawSmokeState)
         {
-            foreach(var state in rawSmokeState)
+            foreach (var state in rawSmokeState)
             {
-                if(CurrentSmokeState.Any(cs => cs.Key == state.Key))
+                if (CurrentSmokeState.Any(cs => cs.Key == state.Key))
                 {
                     var existing = CurrentSmokeState.First(cs => cs.Key == state.Key);
                     var index = CurrentSmokeState.IndexOf(existing);
