@@ -10,7 +10,9 @@ RUN dotnet publish --output /artifact/ --configuration Release
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 
+EXPOSE 80
 WORKDIR /app
+
 COPY --from=builder /artifact .
 
-ENTRYPOINT [ "dotnet", "SmokeTestsDashboardServer.dll"]
+ENTRYPOINT [ "dotnet", "Dashboard.dll"]
