@@ -15,7 +15,8 @@ jobs:
     - name: Build the Docker image
       run: |
           cd ./dashboard
-          VERSION=$(date +%s)
-          docker login -u vhojan -p ${{ secrets.SECRET_KEY }}
-          docker build . -f ./_infra/Dockerfile -t mylesagray/a-new-hope-dashboard:${VERSION}
-          docker push mylesagray/a-new-hope-dashboard:${VERSION}
+          REPO=${{ secrets.REPO }}
+          VERSION=$(git log -1 --pretty=%h)
+          echo ${{ secrets.SECRET_KEY }} | docker login -u ${REPO} --password-stdin
+          docker build . -f ./_infra/Dockerfile -t ${REPO}/a-new-hope-dashboard:latest -t ${REPO}/a-new-hope-dashboard:${VERSION}
+          docker push ${REPO}/a-new-hope-dashboard
