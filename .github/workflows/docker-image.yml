@@ -16,6 +16,6 @@ jobs:
       run: |
           cd ./dashboard
           VERSION=$(date +%s)
-          docker login -u mylesagray -p ${{ secrets.SECRET_KEY }}
+          echo ${{ secrets.SECRET_KEY }} | docker login -u mylesagray --password-stdin
           docker build . -f ./_infra/Dockerfile -t mylesagray/a-new-hope-dashboard:${VERSION}
           docker push mylesagray/a-new-hope-dashboard:${VERSION}
