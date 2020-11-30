@@ -32,7 +32,7 @@ namespace MetricDashboard
                 }
                 else
                 {
-                    metric.FpsValue = metric.FpsValue + newMetric.FpsValue;
+                    metric.FpsValue = newMetric.FpsValue;
                 }
             }
             else

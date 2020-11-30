@@ -47,6 +47,7 @@ header img {
     padding: var(--default-padding);
 }
 
+.top .graph,
 .top .all-nodes {
     flex: 1 1 auto;
 }

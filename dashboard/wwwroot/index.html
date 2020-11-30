@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <script type="text/javascript" src="js/signalr/dist/browser/signalr.min.js"></script>
+    <script type="text/javascript" src="js/chartjs/dist/Chart.min.js"></script>
     <script src="app/main.js" type="module"></script>
     <link rel="stylesheet" href="styles/dashboard.css">
 </head>
@@ -16,7 +17,7 @@
     <main id="dashboard">
         <div class="top">
             <div class="graph">
-                graph goes here
+                <canvas id="fpsChart"></canvas>
             </div>
             <div id="nodeList" class="all-nodes">
                 node names go here
