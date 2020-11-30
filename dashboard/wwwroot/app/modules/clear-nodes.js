@@ -1,8 +1,7 @@
-export default function clearNodes() {
+export default function clearNodes(containerElement) {
     try {
-        const container = document.getElementById("resultContainer");
-        while (container.firstChild) {
-            container.removeChild(container.lastChild);
+        while (containerElement.firstChild) {
+            containerElement.removeChild(containerElement.lastChild);
         }
     } catch (error) {
         console.error(error);

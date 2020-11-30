@@ -8,14 +8,33 @@
 </head>
 
 <body>
-    <div class="backdrop"></div>
-    <header class="row space-between centered padded-wh default-bg bd-b bd-accent">
-        <div class="row">
-            <img class="logo" src="assets/itq-beeldmerk.svg" alt="itq logo" />
-            <h1 class="ft-normal">Active node overview</h1>
-        </div>
+    <header>
+        <img src="assets/itq-beeldmerk.svg" alt="itq logo" />
+        <h1>Active node overview</h1>
+        <img src="assets/itq-beeldmerk.svg" alt="itq logo" />
     </header>
-    <main id="resultContainer" class="grid padded"></main>
+    <main id="dashboard">
+        <div class="top">
+            <div class="graph">
+                graph goes here
+            </div>
+            <div id="nodeList" class="all-nodes">
+                node names go here
+            </div>
+            <div class="all-stats">
+                stats go here
+            </div>
+        </div>
+        <div class="middle"></div>
+        <div class="bottom">
+            <div class="snapshots">
+                <div id="nodeSnapshot0" class="node-stats"></div>
+                <div id="nodeSnapshot1" class="node-stats"></div>
+                <div id="nodeSnapshot2" class="node-stats"></div>
+                <div id="nodeSnapshot3" class="node-stats"></div>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>

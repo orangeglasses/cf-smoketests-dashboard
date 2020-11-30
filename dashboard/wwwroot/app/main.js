@@ -1,13 +1,13 @@
 import trackMetrics from "./modules/track-metrics.js";
 
-const smokeConnection = new signalR.HubConnectionBuilder().withUrl("/db-metrics").build();
+const metricsConnection = new signalR.HubConnectionBuilder().withUrl("/db-metrics").build();
 
-trackMetrics(smokeConnection)
+trackMetrics(metricsConnection)
 
-smokeConnection.onClosed = e => {
+metricsConnection.onClosed = e => {
     console.warn('Connection closed');
 };
 
-smokeConnection.start().catch(function (err) {
+metricsConnection.start().catch(function (err) {
     return console.error(err.toString());
 });
