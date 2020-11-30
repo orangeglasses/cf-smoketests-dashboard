@@ -3,11 +3,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using MetricDashboard.lib.models;
 using Microsoft.AspNetCore.SignalR;
+using Prometheus;
 
 namespace MetricDashboard
 {
     public class MetricsRepo
     {
+        private static readonly Gauge Aggregate_FPS = Metrics.CreateGauge("aggregate_fps", "Total FPS from all instances");
+
         private readonly IHubContext<MetricsHub> _metricsHub;
         internal List<Metric> CurrentMetricsCollection;
 
@@ -36,6 +39,9 @@ namespace MetricDashboard
             {
                 CurrentMetricsCollection.Add(newMetric);
             }
+
+            //Update Prometheus metric
+            Aggregate_FPS.Set(newMetric.FpsValue);
 
             await _metricsHub.Clients.All.SendAsync("updateCounters", CurrentMetricsCollection.ToArray());
         }

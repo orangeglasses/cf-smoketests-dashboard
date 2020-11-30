@@ -1,6 +1,6 @@
 import trackMetrics from "./modules/track-metrics.js";
 
-const smokeConnection = new signalR.HubConnectionBuilder().withUrl("/metrics").build();
+const smokeConnection = new signalR.HubConnectionBuilder().withUrl("/db-metrics").build();
 
 trackMetrics(smokeConnection)
 
