@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+          cd ./dashboard
+          VERSION=$(date +%s)
+          docker login -u mylesagray -p ${{ secrets.SECRET_KEY }}
+          docker build . -f ./_infra/Dockerfile -t mylesagray/a-new-hope-dashboard:${VERSION}
+          docker push mylesagray/a-new-hope-dashboard:${VERSION}

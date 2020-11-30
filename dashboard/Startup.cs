@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Prometheus;
 
 namespace MetricDashboard
 {
@@ -24,10 +25,11 @@ namespace MetricDashboard
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseMetricServer();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<MetricsHub>("/metrics");
+                endpoints.MapHub<MetricsHub>("/db-metrics");
             });
         }
     }

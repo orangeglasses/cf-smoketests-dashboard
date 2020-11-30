@@ -4,6 +4,7 @@ WORKDIR /src
 COPY . .
 
 RUN dotnet tool install -g Microsoft.Web.LibraryManager.Cli
+RUN dotnet add package prometheus-net.AspNetCore
 RUN dotnet restore
 RUN /root/.dotnet/tools/libman restore
 RUN dotnet publish --output /artifact/ --configuration Release
