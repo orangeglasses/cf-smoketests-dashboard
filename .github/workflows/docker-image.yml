@@ -14,7 +14,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: |
+          cd ./dashboard
           VERSION=$(date +%s)
           docker login -u mylesagray -p ${{ secrets.SECRET_KEY }}
-          docker build . -f ./dashboard/_infra/Dockerfile -t mylesagray/a-new-hope-dashboard:${VERSION}
+          docker build . -f ./_infra/Dockerfile -t mylesagray/a-new-hope-dashboard:${VERSION}
           docker push mylesagray/a-new-hope-dashboard:${VERSION}
