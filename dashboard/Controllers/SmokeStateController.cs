@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using cf_smoketests_dashboard.lib.models;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
+using cf_smoketests_dashboard.lib.models;
 
 namespace SmokeTestsDashboardServer.Controllers
 {
