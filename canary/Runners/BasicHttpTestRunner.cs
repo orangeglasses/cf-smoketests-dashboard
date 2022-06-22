@@ -8,7 +8,6 @@ using cf_smoketests_canary.Configuration;
 using cf_smoketests_canary.Models;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace cf_smoketests_canary.Runners
 {

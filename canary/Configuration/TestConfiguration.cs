@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace cf_smoketests_canary.Configuration
 {
     public class TestConfiguration
