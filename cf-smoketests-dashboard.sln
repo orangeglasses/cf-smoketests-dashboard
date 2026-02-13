@@ -1,0 +1,38 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "canary", "canary", "{5B41F957-6190-370C-3A2A-8F522F136622}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dashboard", "dashboard", "{2360F3E6-04C8-649D-5938-B5231601C01C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cf-smoketests-canary", "canary\cf-smoketests-canary.csproj", "{BF178625-AF1B-3245-132F-E0A3A73366C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmokeTestsDashboardServer", "dashboard\SmokeTestsDashboardServer.csproj", "{ADEFE27C-CD76-FB0F-AFA4-B35023BD6687}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF178625-AF1B-3245-132F-E0A3A73366C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF178625-AF1B-3245-132F-E0A3A73366C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF178625-AF1B-3245-132F-E0A3A73366C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF178625-AF1B-3245-132F-E0A3A73366C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADEFE27C-CD76-FB0F-AFA4-B35023BD6687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADEFE27C-CD76-FB0F-AFA4-B35023BD6687}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADEFE27C-CD76-FB0F-AFA4-B35023BD6687}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADEFE27C-CD76-FB0F-AFA4-B35023BD6687}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BF178625-AF1B-3245-132F-E0A3A73366C6} = {5B41F957-6190-370C-3A2A-8F522F136622}
+		{ADEFE27C-CD76-FB0F-AFA4-B35023BD6687} = {2360F3E6-04C8-649D-5938-B5231601C01C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2DF8131D-7F5E-441E-8173-FEF8B2380498}
+	EndGlobalSection
+EndGlobal

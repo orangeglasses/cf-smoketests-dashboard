@@ -20,9 +20,7 @@ var app = builder.Build();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseEndpoints(endpoints => {
-    endpoints.MapControllers();
-    endpoints.MapHub<SmokeHub>("/smoke");
-});
+app.MapControllers();
+app.MapHub<SmokeHub>("/smoke");
 
 app.Run();

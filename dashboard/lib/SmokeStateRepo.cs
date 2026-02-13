@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using cf_smoketests_dashboard.lib.models;
 using Microsoft.AspNetCore.SignalR;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace SmokeTestsDashboardServer
 {
